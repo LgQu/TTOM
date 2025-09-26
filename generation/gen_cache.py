@@ -209,7 +209,7 @@ if __name__ == "__main__":
     print(f"Using benchmark type: {benchmark_type}")
 
 
-    txt_path = f"/hpctmp/e1351271/lvd/LVD_extention/cache/{benchmark_source}_prompts/{benchmark_type}.txt"
+    txt_path = f"cache/{benchmark_source}_prompts/{benchmark_type}.txt"
     json_path = f"cache/{benchmark_source}_{benchmark_type}-gpt_4o.json"
     set_cache_path(json_path)
     # count = create_prompt_cache_from_txt(txt_path, json_path)

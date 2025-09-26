@@ -157,7 +157,7 @@ python generation/gen_benchmarks.py \
 - `data/benchmarks/{cache_type}/{prefix}_wan_enriched_lora32_jsdGs_g{max_guidance_step}_ls{max_lora_step}_i{max_iter}_[{target_modules}]/pid{pid}_{tag}.mp4` - Generated videos
 - `data/attn_maps/wan21_lora/{cache_type}/pid{pid}_insts{insts_str}.pt` - Attention map files (when save_attn_map=True)
 
-### * Attention Map Analysis (`genattnmap`)
+### * Attention Map Analysis
 
 1. Generate attention maps for analysis of attention-layout overlap (using prompts from TTOM/cache/cache_train_motion_gpt-4o.json):
 

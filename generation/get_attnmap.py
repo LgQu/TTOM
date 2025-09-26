@@ -16,13 +16,13 @@ import pandas as pd
 # ----------------------------------------------------------------------
 # 1. Build pipeline
 # ----------------------------------------------------------------------
-# model_base = "/home/ziyangw/temp/vgen/ttt-lm/hf_models/Wan-AI/Wan2.1-T2V-14B"
-model_base = "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B"
+model_base = "models/Wan2.1-T2V-14B"
 import glob
 dit_model = glob.glob(os.path.join(model_base, "*.safetensors"))
 
 def build_pipeline() -> WanVideoPipeline:
     pipe = WanVideoPipeline.from_pretrained(
+        model_base=model_base,
         torch_dtype=torch.bfloat16,
         device="cuda",
         skip_download=True,
@@ -36,7 +36,7 @@ def build_pipeline() -> WanVideoPipeline:
             ),
         ],
         tokenizer_config=ModelConfig(
-            path="/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-T2V-1.3B/google/umt5-xxl"
+            path=f"{model_base}/google/umt5-xxl"
         )
     )
     # pipe.enable_vram_management()
@@ -138,12 +138,6 @@ def generate_single_video(
     if video is None:
         print("Only lora weight is saved!")
         return
-
-    if guidance_type == "using_existed_lora":
-        if pid is not None:
-            out_path = f"/scratch/e1351271/video_gen/lora_ckpts/pid{pid}.mp4"
-    elif guidance_type == "none" and pid is None:
-        out_path = f"/scratch/e1351271/video_gen/lora_ckpts/prompt[{prompt[:20]}]_origin.mp4"
         
     save_video(video, out_path, fps=16, quality=5)
     print(f"[DONE] pid {pid} saved to {out_path}")

@@ -40,7 +40,10 @@ TTOM/
 
 ### Prerequisites
 
-**Note:** Steps 2 and 3 are only required if you want to perform attention-layout overlap analysis using GroundingDINO detection and SAM2 segmentation. For basic video generation, only step 1 is needed.
+**Note:** Steps 3 and 4 are only required if you want to perform attention-layout overlap analysis using GroundingDINO detection and SAM2 segmentation. For basic video generation, only step 1 is needed.
+
+**Based on DiffSynth:** This project is built on top of DiffSynth, an efficient diffusion model inference engine. For more information about DiffSynth, please visit the official repository: [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio)
+
 
 1. **Install TTOM Dependencies** (Required)
    ```bash
@@ -48,7 +51,21 @@ TTOM/
    pip install -e .
    ```
 
-2. **GroundingDINO Installation** (Optional - Only needed for attention-layout analysis)
+2. **Download wan2.1-t2v-14b Model**
+
+   Download the wan2.1-t2v-14b model from Hugging Face to the `models` directory:
+
+   ```bash
+   # Install huggingface_hub if not already installed
+   pip install "huggingface_hub[cli]"
+   
+   # Download the model
+   huggingface-cli download Wan-AI/Wan2.1-T2V-14B --local-dir ./models/Wan2.1-T2V-14B
+   ```
+
+   **Note:** The download may take some time depending on your internet connection speed. The model will be saved to `./models/Wan2.1-T2V-14B/`.
+
+3. **GroundingDINO Installation** (Optional - Only needed for attention-layout analysis)
    ```bash
    cd TTOM
    git clone https://github.com/IDEA-Research/GroundingDINO.git
@@ -56,7 +73,7 @@ TTOM/
    pip install -e .
    ```
 
-3. **SAM2 Installation** (Optional - Only needed for attention-layout analysis)
+4. **SAM2 Installation** (Optional - Only needed for attention-layout analysis)
    ```bash
    cd TTOM
    git clone https://github.com/facebookresearch/segment-anything-2.git sam2

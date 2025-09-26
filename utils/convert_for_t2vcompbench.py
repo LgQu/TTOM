@@ -6,16 +6,16 @@ import argparse
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--source-dir", type=Path, required=False,
-                   default=Path("/scratch/e1351271/video_gen/data/t2v_compbench/4_motion_binding.gpt-4o/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8_[cross_attn.q,cross_attn.k,cross_attn.v,cross_attn.o]"))
+                   default=Path("data/t2v_compbench/4_motion_binding.gpt-4o/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8_[cross_attn.q,cross_attn.k,cross_attn.v,cross_attn.o]"))
     p.add_argument("--target-dir", type=Path, required=False,
-                   default=Path("/scratch/e1351271/benchmark/T2V-CompBench/data/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8/motion_binding"))
+                   default=Path("benchmark/T2V-CompBench/data/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8/motion_binding"))
     p.add_argument("--sample", action="store_true",
-                   help="启用 sample 模式：只处理 pid-file 中列出的 pid")
+                   help="Enable sample mode: only process pids listed in pid-file")
     p.add_argument("--pid-file", type=Path, required=False,
-                   default=Path("/scratch/e1351271/video_gen/cache/sample_id/cache_4_motion_binding_gpt-4o.txt"),
-                   help="sample 模式下使用的 pid 列表文件（每行一个整数 pid）")
+                   default=Path("cache/sample_id/cache_4_motion_binding_gpt-4o.txt"),
+                   help="PID list file used in sample mode (one integer pid per line)")
     p.add_argument("--max-pid", type=int, default=200,
-                   help="全量模式下用于缺失检查的最大 pid（检查范围 0..max_pid-1）")
+                   help="Maximum pid for missing check in full mode (check range 0..max_pid-1)")
     return p.parse_args()
 
 def read_required_pids(pid_file: Path):
@@ -29,25 +29,25 @@ def main():
     target_dir: Path = args.target_dir
     target_dir.mkdir(parents=True, exist_ok=True)
 
-    # ===== 获取待处理文件列表 / 待处理 pid 集 =====
+    # ===== Get file list to process / pid set to process =====
     if args.sample:
         required_pids = read_required_pids(args.pid_file)
-        print(f"[Sample 模式] 从 {args.pid_file} 读取 {len(required_pids)} 个 pid")
-        # 只遍历这些 pid，各自匹配 mp4/gif
+        print(f"[Sample mode] Read {len(required_pids)} pids from {args.pid_file}")
+        # Only iterate these pids, match mp4/gif for each
         media_files = []
         for pid in required_pids:
             media_files += list(source_dir.glob(f"pid{pid}_*.mp4"))
             media_files += list(source_dir.glob(f"pid{pid}_*.gif"))
         expected_pid_set = set(required_pids)
     else:
-        # 全量模式：扫描全部
+        # Full mode: scan all
         media_files = sorted(
             list(source_dir.glob("pid*_*.mp4")) +
             list(source_dir.glob("pid*_*.gif"))
         )
         expected_pid_set = set(range(1, 1+args.max_pid))
 
-    # ===== 复制并重命名 =====
+    # ===== Copy and rename =====
     count = 0
     present_pids = set()
 
@@ -59,7 +59,7 @@ def main():
 
         pid_num = int(m.group(1))
 
-        # sample 模式下，若 pid 不在列表里则跳过（防御）
+        # In sample mode, skip if pid not in list (defensive)
         if args.sample and pid_num not in expected_pid_set:
             continue
 
@@ -71,12 +71,12 @@ def main():
         print(f"Copied {file.name} -> {new_name}")
         count += 1
 
-    print(f"\n✅ 总计复制: {count} 个文件")
+    print(f"\n✅ Total copied: {count} files")
 
-    # ===== 缺失检查 =====
+    # ===== Missing check =====
     missing_pids = sorted(expected_pid_set - present_pids)
     if missing_pids:
-        print("\n⚠️  缺少以下 pid 对应的视频文件：")
+        print("\n⚠️  Missing video files for the following pids:")
         for i in range(0, len(missing_pids), 10):
             print(", ".join(f"pid{n}" for n in missing_pids[i:i+10]))
 

@@ -20,7 +20,6 @@ from pathlib import Path
 # 固定路径配置
 # ===========================
 PROJECT_ROOT      = Path("/Path/To/Your/Project")
-PROJECT_ROOT      = Path("/scratch/e1351271/video_gen/ttt-lm")
 ATTENTION_PTS_DIR = PROJECT_ROOT / "data/attn_maps/wan2.1-t2v-14b"
 DINO_RESULTS_ROOT = PROJECT_ROOT / "data/dino_results_batch"
 SUMMARY_DIR       = PROJECT_ROOT / "data/miou_summary"

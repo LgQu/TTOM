@@ -21,9 +21,9 @@ benchmark_type = "scene"
 # benchmark_type = "temporal_style"
 
 # Default output directory (can be overridden by --out)
-DEFAULT_OUT_DIR = f"/scratch/e1351271/benchmark/VBench/vbench_videos/wan21_lora/{benchmark_type}"
-DEFAULT_IN_DIR = f"/scratch/e1351271/video_gen/ttt-lm/data/benchmarks/vbench_{benchmark_type}-gpt_4o/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8_[cross_attn.q,cross_attn.k,cross_attn.v,cross_attn.o]"
-DEFAULT_JSON = f"/scratch/e1351271/video_gen/ttt-lm/cache/vbench_{benchmark_type}-gpt_4o.json"
+DEFAULT_OUT_DIR = f"benchmark/VBench/vbench_videos/wan21_lora/{benchmark_type}"
+DEFAULT_IN_DIR = f"benchmarks/vbench_{benchmark_type}-gpt_4o/mem_s0_ori_wan_enriched_lora32_jsdGs_g5_ls5_i8_[cross_attn.q,cross_attn.k,cross_attn.v,cross_attn.o]"
+DEFAULT_JSON = f"cache/vbench_{benchmark_type}-gpt_4o.json"
 
 
 def safe_filename(s: str) -> str:

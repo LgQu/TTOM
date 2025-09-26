@@ -650,7 +650,7 @@ def process_and_save_attention_maps(
     concept_prompt: str,
     progress_id: int,
     frame_shape=(30, 52),
-    save_root="/scratch/e1351271/video_gen/data/attnmap"
+    save_root="data/attnmap"
 ):
     """
     Process and save attention maps visualization and stacking results.

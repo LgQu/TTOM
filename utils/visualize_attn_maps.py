@@ -194,7 +194,7 @@ def load_attention_data(pid=0, layer_id=13, step_id=40, inst_id=0, layer_ids=Non
     
     if not os.path.exists(attn_path):
         # Try to find the correct file
-        attn_dir = "/scratch/e1351271/video_gen/ttt-lm/data/attn_maps/wan21_lora/cache_test_gpt-4o/"
+        attn_dir = "data/attn_maps/wan21_lora/cache_test_gpt-4o/"
         files = [f for f in os.listdir(attn_dir) if f.startswith(f"pid{pid}_")]
         if files:
             attn_path = os.path.join(attn_dir, files[0])

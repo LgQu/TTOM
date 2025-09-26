@@ -11,7 +11,7 @@ from groundingdino.util.inference import load_model, load_image, predict, annota
 import supervision as sv
 
 # --------- Config (edit these) ----------
-VIDEO_DIR    = "/scratch/e1351271/video_gen/ttt-lm/data/t2v_compbench/cache_train_motion_gpt-4o/wan_full_enriched_wo"
+VIDEO_DIR    = "data/t2v_compbench/cache_train_motion_gpt-4o/wan_full_enriched_wo"
 OUTPUT_ROOT  = "data/dino_results_batch"
 BOX_THRESHOLD  = 0.35
 TEXT_THRESHOLD = 0.25

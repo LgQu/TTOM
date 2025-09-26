@@ -408,16 +408,17 @@ class WanVideoPipeline(BasePipeline):
         self.use_unified_sequence_parallel = True
 
     def init_dit(self, models, local_model_path: str = "./models", ):
+        model_base = self.model_base
         model_configs=[
             ModelConfig(
                 path=[
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00001-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00002-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00003-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00004-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00005-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00006-of-00007.safetensors",
-                    "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B/diffusion_pytorch_model-00007-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00001-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00002-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00003-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00004-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00005-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00006-of-00007.safetensors",
+                    f"{model_base}/diffusion_pytorch_model-00007-of-00007.safetensors",
                 ]
             ),
         ]
@@ -446,8 +447,8 @@ class WanVideoPipeline(BasePipeline):
         skip_download: bool = False,
         redirect_common_files: bool = True,
         use_usp=False,
+        model_base: str = "models",
     ):
-        # Redirect model path
         if redirect_common_files:
             redirect_dict = {
                 "models_t5_umt5-xxl-enc-bf16.pth": "Wan-AI/Wan2.1-VACE-14B",
@@ -481,6 +482,8 @@ class WanVideoPipeline(BasePipeline):
         # Initialize pipeline
         pipe = WanVideoPipeline(device=device, torch_dtype=torch_dtype)
         if use_usp: pipe.initialize_usp()
+        # Redirect model path
+        pipe.model_base = model_base
         pipe.text_encoder = model_manager.fetch_model("wan_video_text_encoder")
         pipe.dit = model_manager.fetch_model("wan_video_dit")
         pipe.vae = model_manager.fetch_model("wan_video_vae")
@@ -642,8 +645,6 @@ class WanVideoPipeline(BasePipeline):
                     # start_time = time.time()
                     self.init_dit(models=models)
                     # end_time = time.time()
-                    # elapsed = end_time - start_time
-                    # print(f"[prog {progress_id:02d}] init_dit 耗时：{elapsed:.2f} 秒")
 
                     # models["dit"] = models["dit"].unload()
                     print(f"[prog {progress_id:02d}] LoRA removed.")
@@ -651,7 +652,7 @@ class WanVideoPipeline(BasePipeline):
             if guidance_type == "lora":
                 if group_id is not None and progress_id == 0 and load_lora_weight:
                     ckpt_dir = os.path.join(
-                        "/scratch/e1351271/video_gen/DiffSynth-Studio/models/train/group_lora_train", f"group_{group_id}"
+                        "models/train/group_lora_train", f"group_{group_id}"
                     )
                     lora_path = os.path.join(ckpt_dir, "lora.pth")
                     if os.path.isfile(lora_path):
@@ -854,7 +855,7 @@ def merge_lora_checkpoints(
     similarity: float,
     group_id: int = None,
     pid: int = None,
-    base_dir: str = "/scratch/e1351271/video_gen/DiffSynth-Studio/models/train/group_lora_train",
+    base_dir: str = "models/train/group_lora_train",
     temp_name: str = "lora_temp.pth",
     final_name: str = "lora.pth",
 ) -> str:
@@ -1230,20 +1231,6 @@ class WanVideoUnit_VACE(PipelineUnit):
             print("vace_attn_mask.shape: ", vace_attn_mask.shape)  # [1, 1, T', H, W]
             unique_vals = torch.unique(vace_attn_mask)
             print(set(unique_vals.tolist()))            
-            # convert to [1, T'*H*W, 512]
-
-            # save_dir = "/scratch/e1351271/video_gen/data/t2v_test"
-            # os.makedirs(save_dir, exist_ok=True)
-
-            # # 将 boolean mask 转为 uint8（0 or 255）
-            # vis_mask = vace_attn_mask.to(torch.uint8) * 255  # shape: [1, 1, T', H, W]
-            # vis_mask = vis_mask.squeeze(0).squeeze(0)         # shape: [T', H, W]
-
-            # # 逐帧保存为图片
-            # for t in range(vis_mask.shape[0]):
-            #     mask_frame = vis_mask[t].cpu().numpy()  # shape: [H, W], dtype=uint8
-            #     img = Image.fromarray(mask_frame)
-            #     img.save(os.path.join(save_dir, f"attn_mask_{t:03d}.png"))
 
             inactive = vace_video * (1 - vace_mask) + 0 * vace_mask
             reactive = vace_video * vace_mask + 0 * (1 - vace_mask)
@@ -1397,74 +1384,6 @@ class WanVideoUnit_LAIV(PipelineUnit):
         # utils.vis_layout(layout_list)
 
         return inputs_shared, inputs_posi, inputs_nega
-
-        # laiv_context = torch.cat([context_posi, valid_inst_cat], dim=1)
-        # print("laiv_context.shape: ", laiv_context.shape)
-
-        #  step1: prompt
-        # context_posi = inputs_posi.get("context")
-        # if not laiv_prompts or not laiv_masks:
-        #     print("[LAIV]: no instance prompts or masks")
-        #     return inputs_shared, inputs_posi, inputs_nega
-        # B, C_lat, T_lat, H_lat, W_lat = latents.shape
-        # assert B == 1, "[LAIV]: batch_size must be 1"
-        # H, W = H_lat // 2, W_lat // 2
-
-        # #  step2: mask
-        # latents      = inputs_shared.get("latents")  
-        # print("|"*100)
-        # print("latents.shape", latents.shape)
-        # flat_masks = []
-        # def safe_to_tensor(img):
-        #     if isinstance(img, list):
-        #         img = np.array(img)
-
-        #     if isinstance(img, np.ndarray):
-        #         return torch.from_numpy(img).float() / 255.0  # 假设 uint8 0/255
-        #     else:
-        #         return ToTensor()(img)[0]
-            
-        # for inst_masks in laiv_masks:
-        #     vol = torch.stack([safe_to_tensor(f) for f in inst_masks], dim=0).to(pipe.device)
-        #     vol = vol.unsqueeze(0).unsqueeze(0) # (1,1,T_orig,H0,W0)
-        #     vol_ds = F.interpolate(
-        #         vol,
-        #         size=(T_lat, H, W),
-        #         mode="trilinear",
-        #         align_corners=False
-        #     )   # trilinear to (1,1,T_lat,H_lat,W_lat)
-        #     vol_ds = vol_ds[0,0]    # (T_lat, H_lat, W_lat)
-        #     flat_masks.append((vol_ds > 0.5).float().view(-1))
-
-        # mask_mat = torch.stack(flat_masks, dim=0)
-        # valid_inst_masks = []
-        # for i in range(mask_mat.shape[0]):
-        #     valid_inst_masks.extend([mask_mat[i]] * instance_max_len)
-
-        # valid_inst_masks = torch.stack(valid_inst_masks, dim=0)  # [N * instance_max_len, T_lat * H * W]        
-        # # valid_inst_masks = []
-        # # for i, length in enumerate(seq_lens):
-        # #     valid_inst_masks.extend([mask_mat[i]] * length)
-        # # valid_inst_masks = torch.stack(valid_inst_masks, dim=0)
-
-        # L_ctx = context_posi.shape[1]
-        # sum_len = valid_inst_masks.shape[0]
-        # spacetime = valid_inst_masks.shape[1]
-        # cam = torch.ones(1, L_ctx + sum_len, spacetime, device=pipe.device)
-        # cam[0, L_ctx:] = valid_inst_masks
-        # additive_mask = torch.where(
-        #     cam > 0.5,                            # allowed positions
-        #     torch.zeros_like(cam),               # 0
-        #     torch.full_like(cam, float("-inf"))  # -inf
-        # ).transpose(1, 2).to(device=latents.device, dtype=latents.dtype)
-        # print("additive_mask.shape: ", additive_mask.shape)
-        # inputs_posi["inst_mask"] = additive_mask
-
-        # # inst_mask = inputs_posi["inst_mask"]
-        # # masks = get_masks_from_inst_mask(inst_mask)
-        # # save_inst_masks_as_gif(masks, out_dir="/scratch/e1351271/video_gen/data/attnmap/wan_video_inst_masks")
-
-        # return inputs_shared, inputs_posi, inputs_nega
 
 
 class WanVideoUnit_UnifiedSequenceParallel(PipelineUnit):

@@ -16,8 +16,8 @@ import pandas as pd
 # ----------------------------------------------------------------------
 # 1. Build pipeline
 # ----------------------------------------------------------------------
-# model_base = "/home/ziyangw/temp/vgen/ttt-lm/hf_models/Wan-AI/Wan2.1-T2V-14B"
-model_base = "/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-VACE-14B"
+
+model_base = "models/Wan2.1-T2V-14B"
 import glob
 dit_model = glob.glob(os.path.join(model_base, "*.safetensors"))
 
@@ -36,8 +36,9 @@ def build_pipeline() -> WanVideoPipeline:
             ),
         ],
         tokenizer_config=ModelConfig(
-            path="/scratch/e1351271/video_gen/DiffSynth-Studio/models/Wan-AI/Wan2.1-T2V-1.3B/google/umt5-xxl"
-        )
+            path=f"{model_base}/google/umt5-xxl"
+        ),
+        model_base=model_base,
     )
     # pipe.enable_vram_management()
     return pipe

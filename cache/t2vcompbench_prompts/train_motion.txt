@@ -1,0 +1,200 @@
+A red kayak paddles to the left side of a calm lake.  
+A small puppy trots to the left on a wooden deck.  
+A cyclist rides past a pedestrian from right to the left in a busy city street.  
+A paper boat floats from right to left in a garden pond.  
+A crab scuttles from right to left on the sandy beach.  
+A ferry sails from the right side to the left side on a wide river.  
+A snowboarder glides from right to left in a halfpipe.  
+A pigeon flies right to left on a sunny rooftop.  
+A turtle walks slowly to the left in a rainforest clearing.  
+A sailboat drifts to the left across an open bay.  
+A blue balloon floats left towards a carnival tent in the park.  
+A hawk soars right to left above a pine forest in the mountains.  
+A rollerblader speeds right to left on a boardwalk.  
+A fox runs from right to left in a grassy field.  
+A tugboat moves right to left by the harbor wall.  
+A cheetah sprints from the right to the left on a savanna plain.  
+A hiker crosses from right to left across a suspension bridge.  
+A fishing boat drifts from the right to left on open sea.  
+A manta ray glides across the reef beneath the ocean surface.  
+A brown horse gallops left, a calf follows as dust swirls across the dirt road.  
+A yellow kayak moves left across the river, a crane stands in tall reeds.  
+A parade float rolls left across the street, carrying a marching band in the town square.  
+A skateboarder glides left across the plaza, a pigeon hops softly.  
+A cargo truck drives left along the highway, a motorcycle overtakes.  
+A green parrot flies left through the canopy, monkeys chatter gently.  
+A sailboat cruises left across the horizon.  
+A skier heads left down the slope, a snowboarder jumps off the rail.  
+A seal swims left, a penguin waddles off the icy ledge.  
+A helicopter flies left over a stadium, fans cheer in the stands.  
+A tugboat steers left, a pelican glides smoothly as it circles over the bay.  
+A yellow bus drives left across a bridge, children wave from the windows.  
+A horse trots left across a meadow, a foal follows in the pasture.  
+A canoe paddles left through a mangrove channel, crabs scuttle off the roots.  
+A hiker walks left across a hilltop trail.  
+A pickup truck drives left across a dirt road.  
+A bright kite drifts leftwards across the beach.  
+A fox darts leftwards in the snowy forest.  
+A cyclist pedals leftwards, a dog runs beside the trail.  
+A marble rolls leftwards on a wooden floor.  
+A red sports car speeds from left to right in a mountain tunnel.  
+A sailboat glides from left to right on a tropical lagoon.  
+A yellow excavator moves from the left side to the right side on a construction site.  
+A ferry sails across the bay from left to right in the early morning fog.  
+A freight train travels from left to right on a rural railway.  
+A turtle crawls slowly to the right in a desert enclosure.  
+A fighter jet roars hard to the right in the clear sky.  
+A runner sprints to the right across a stadium track.  
+A wolf trots right towards a frozen river in the tundra.  
+A stunt plane flies from left to right above a canyon.  
+A skateboarder rolls rightward across the park path beneath a street lamp.  
+A fishing boat sails to the right side of the harbor.  
+A jogger runs rightwards across a wooden bridge.  
+A fox trots rightwards in a dense forest.  
+A skateboarder glides to the right on a concrete ramp.  
+A dolphin swims rightwards in the open ocean.  
+A parade float moves left to right on a city boulevard.  
+A freight train speeds from left to right in the countryside.  
+A cyclist pedals left to right by a lakeside path.  
+A hiker walks from the left to the right on a mountain ridge.  
+A canoe paddles from left to right across a calm river.  
+A freight train travels from the left to right on a mountain railway.  
+A bright balloon drifts from left to the right.  
+A speedboat races from left to right, passing a fishing pier.  
+A hawk flies right, a rabbit freezes as it darts across the meadow.  
+A ferry moves right across the harbor, passengers wave in the sunshine.  
+A chef slides a dish right across the counter, serving a customer.  
+A skateboarder glides right across the plaza, pigeons flutter softly.  
+A truck drives right along a desert highway, dust trailing behind.  
+A hang glider soars right across the valley.  
+A skier carves right down the slope, snow spraying off the rail.  
+A helicopter hovers right over the stadium, photographers capture the moment in the stands.  
+A cyclist pedals across a riverside path.  
+A hiker treks through a rainforest trail.  
+A kayaker paddles across a glacial lake.  
+A dog trots along a cobblestone alley.  
+A blue kite drifts leftwards while a yellow balloon rises rightwards.  
+A cat prowls left while a mouse scurries right.  
+A surfer rides right while another paddles left.  
+A fox darts leftward through tall grass, an eagle soars rightward above.  
+A speedboat cuts rightwards through the waves, a seabird glides leftwards above.  
+A fox sprints leftward across a meadow, while a rabbit hops rightward.  
+A ferry sails rightward across the harbor, while a fishing boat drifts leftward.  
+A skateboarder rides leftward down a city ramp, while a cyclist pedals rightward.  
+A skier carves rightward down a snowy slope, while a snowboarder glides leftward.  
+A hiker walks leftward across a rope bridge, while a parrot flies rightward.  
+A speedboat cuts rightward across a lake, while a kayak paddles leftward.  
+A hot air balloon drifts gradually ascending above the vineyards.  
+A falcon is ascending towards the mountain cliffs.  
+A soap bubble floats slowly ascending at the playground.  
+A hawk soars upwards in the open sky.  
+A paper lantern rises upward into the night air.  
+A climber moves upward on a rock face.  
+A weather balloon launches from a desert station.  
+A manta ray glides in the deep ocean.  
+A parachute opens, blooming behind a skydiver.  
+A butterfly flutters in a flower garden.  
+A firework explodes into the evening sky.  
+A drone lifts into the open field.  
+A paraglider heads towards a coastal ridge.  
+A jellyfish drifts in a sunlit lagoon.  
+A kite drifts, spinning.  
+A hot air balloon ascends over a patchwork of farmland.  
+A paper lantern rises into the night sky.  
+A drone climbs into the morning mist.  
+An eagle soars from a cliff edge.  
+A mountain climber stands on the summit ridge.  
+A weather balloon floats into the upper atmosphere.  
+A falcon takes flight upward from a rocky ledge, heading toward the forest canopy.  
+A gymnast flips upward from the balance beam.  
+A soccer ball arcs upward into the air in a crowded stadium.  
+A rocket launches upward from a desert pad.  
+A paraglider drifts upward, soaring high above the coastline.  
+A hawk climbs upward, circling above the canyon.  
+A swan beats its wings and lifts, soaring into the fog above a lake.  
+A skydiver rises by helicopter, preparing to jump into the clouds above the mountains.  
+A helium blimp floats by a stadium.  
+A red balloon floats gracefully upward and a leaf spirals into a pond.  
+A skier races down a steep slope at a ski resort.  
+A snowflake falls down from a winter sky.  
+A marble rolls down a spiral ramp.  
+A climber rappels downwards from a cliff face in a desert canyon.  
+A diver plunges downwards into the coral reef.  
+A cat jumps down off a wooden fence.  
+A leaf is gently descending from a maple tree.  
+A skydiver drops down into an open field.  
+A soccer ball falls to the ground in a stadium.  
+A kite crashes in a grassy meadow.  
+A raindrop splashes onto a windowpane.  
+A stone tumbles from a crumbling wall.  
+A snowflake lands on a frozen lake.  
+A pinecone falls into a forest clearing.  
+A falcon dives below a rocky ledge.  
+An apple drops into a wicker basket.  
+A basketball bounces on the gym floor.  
+A parachute drifts to the beach.  
+A branch breaks from the old oak tree.  
+A hailstone falls to the rooftop.  
+A pebble rolls from a mountain path.  
+A feather drifts in the barn loft.  
+A skier slides down from the slope and stops on the snowy flat.  
+A pinecone falls into the forest floor, scattering leaves across the trail.  
+A basketball drops downward onto the hardwood court from the hoop.  
+A robotic vacuum cleans the floor from left to right.  
+A cat strolls the floor from right to left.  
+A race car drifts hard to the left.  
+A seagull glides from right to the left.  
+A service cart rolls smoothly from the right side of the aisle to the left side, stopping upon reaching the left end.  
+A conveyor belt moves smoothly from the left side of the factory to the right side, unloading boxes upon reaching the right end.  
+A hawk flies right, a pigeon flutters smoothly as it passes across the park.  
+A kayak paddles across the lake with a swan floating in the reeds.  
+A drone flies across the construction site with workers watching in the scaffold area.  
+A ferry sails right across the harbor, while a dinghy rows left.  
+A runner jogs left across the track, while a cyclist pedals right.  
+A climber descends from the top to the bottom of the rock face.  
+A leaf falls toward the ground, a squirrel jumps between branches.  
+A raindrop slides downward, landing back onto a car windshield.  
+A rope swings downward, landing toward the deck of a ship.  
+A rope ladder drops downward, returning back to the dock.  
+A parachutist glides downward, splashing into the ocean.  
+A painter lowers downward, standing on the scaffolding.  
+A climber rappels downward from a cliff ledge, landing on a rocky shelf.
+A diver rises from the bottom to the top of the pool.
+A skateboarder veers left off the ramp, a frisbee lands gently on the grass.
+A hiker moves left along the riverbank, a heron darts rapidly beneath a vibrant rainbow.
+A sailboat glides right through the marina, ducks paddle gently.
+A hot air balloon rises, with majestic snow-capped mountains.
+A red drone rockets upward into the sky, spinning rapidly as it soars over the stadium.
+A ribbon lifts upward by a ballerina, spinning and twirling through the theater.
+A ceremonial flag is raised upward onto the flagpole by a guard, standing tall against the blue sky as it takes its place.
+An acrobat ascends upward on an invisible wire during a stage performance, the intricate floral designs glowing under the studio lights.
+A soap bubble drifts upward at the garden fountain, the surface shimmering in the sunlight as it drifts higher.
+A rocket launches from the coastal pad, engines roaring as it arcs into the stratosphere.
+A crystal chandelier is lifted on a ballroom hoist, its prisms reflecting candlelight.
+A diamond is raised on a velvet pedestal, spotlights glitter as curators showcase detail.
+A leaf falls, a butterfly flutters.
+A stream of sand trickles downward along an hourglass.
+A raindrop slides downward, streaking the windowpane.
+A feather drifts downward, settling in a meadow.
+A snowflake falls downward, landing onto the porch railing.
+A stretcher is lowered downward by a rescue cable from a helicopter.
+A basketball drops downward to the pavement on a school playground.
+A helium balloon drifts upward, while a maple leaf spirals downward.
+A falcon climbs upward, while a pinecone tumbles downward.
+A firework shoots upward and golden sparks fall downward.
+A snowflake flutters downward and a kite lifts upward.
+A diver plunges downward and a dolphin leaps upward.
+A parachutist glides downward and a weather balloon ascends upward.
+A basketball arcs upward into the air, while confetti drifts downward toward the court.
+A gull soars upward into the air, while a fish splashes downward toward the ocean.
+A soap bubble rises upward from a pond, while a leaf floats downward, gently landing in the pond.
+A lantern lifts upward from a city square, while snow falls downward, gently landing in the city square.
+A rocket climbs upward into the clouds, while ash drifts downward toward the launchpad.
+A lantern rises upward into the sky, while snow falls downward to the rooftops.
+A stretcher is lowered downward by a crane from a ship’s deck, and a rescue helicopter lifts upward.
+A lifeboat is lowered downward by a winch, and a drone ascends upward from the pier.
+A coconut falls downward toward the sand, while a kite climbs upward.
+A cluster of balloons floats upward into the stadium rafters, while confetti drifts downward.
+Rain pours downward onto the river, while a heron lifts upward to a willow branch.
+Hailstones rattle downward onto the tin roof, while smoke rises upward to the night sky.
+A climber moves upward on the rock face, while pebbles skitter downward to the canyon floor.

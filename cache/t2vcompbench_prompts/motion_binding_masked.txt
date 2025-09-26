@@ -1,0 +1,200 @@
+Direction: [left left left]. <object_0> <verb_0> to the left side of <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> leftwards across <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> leftwards in <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> to the left on <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> from left to right in <environment_0>.
+Direction: [left left left | right right right]. <object_0> <verb_0> leftwards while <object_1> <verb_1> rightwards.
+Direction: [left left left | right right right]. <object_0> <verb_0> left while <object_1> <verb_1> right.
+Direction: [right right right]. <object_0> <verb_0> from left to right on <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> from the left side to the right side on <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> across <environment_0> from left to right in <environment_1>.
+Direction: [right right right]. <object_0> <verb_0> from left to right on <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> slowly to the right in <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> hard to the right in <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> to the right across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> right towards <object_1> in <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> from left to right above <object_1> in <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> past <object_1> from right to the left in <environment_0>.
+Direction: [left left left | right right right]. <object_0> <verb_0> leftward through <environment_0>, <object_1> <verb_1> rightward above.
+Direction: [up up up]. <object_0> <verb_0> gradually ascending above <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> ascending towards <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> slowly ascending at <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> upwards in <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> upward into <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> gracefully upward and <object_1> <verb_1> into <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> upward on <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> down a steep <environment_0> at <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> down from a <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> down a <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> downwards from a <environment_0> in <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> downwards into <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> down off <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> gently descending from a <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> rightward across <environment_0> beneath <object_1>.
+Direction: [down down down]. <object_0> <verb_0> down into <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> to the right side of <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> rightwards across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> rightwards in <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> to the right on <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> from right to left in <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> rightwards in <environment_0>.
+Direction: [right right right | left left left]. <object_0> <verb_0> right while <object_1> <verb_1> left.  
+Direction: [left left left]. <object_0> <verb_0> from right to left on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from the right side to the left side on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from right to left in <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> the floor from left to right.  
+Direction: [left left left]. <object_0> <verb_0> the floor from right to left.  
+Direction: [down down down]. <object_0> <verb_0> to the ground in <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> right to left on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> slowly to the left in <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> hard to the left.  
+Direction: [left left left]. <object_0> <verb_0> to the left across <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> left towards <object_1> in <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> right to left above <object_1> in <environment_0>.  
+Direction: [right right right | left left left]. <object_0> <verb_0> rightwards through <environment_0>, <object_1> <verb_1> leftwards above.  
+Direction: [left left left]. <object_0> <verb_0> smoothly from the right side of <environment_0> to the left side, <verb_1> upon reaching the left end.  
+Direction: [right right right]. <object_0> <verb_0> smoothly from the left side of <environment_0> to the right side, <verb_1> upon reaching the right end.  
+Direction: [right right right]. <object_0> <verb_0> left to right on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> right to left on <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> from left to right in <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from right to left in <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> left to right by <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> right to left by <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> from the left to the right on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from the right to the left on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from right to left across <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> from left to right across <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> from the left to right on <environment_0>.  
+Direction: [left left left]. <object_0> <verb_0> from the right to left on <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> from left to the right.  
+Direction: [left left left]. <object_0> <verb_0> from right to the left.
+Direction: [left left left | right right right]. <object_0> <verb_0> across <environment_0> with <object_1> <verb_1> in <environment_1>.
+Direction: [right right right | left left left]. <object_0> <verb_0> across <environment_0> with <object_1> <verb_1> in <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> in <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> onto <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> from <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> below <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> on <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> to the <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> from <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> to <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> from <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> from left to right, passing <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> in <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> across <environment_0> beneath <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> down from <environment_0> and <verb_1> on <environment_1>.
+Direction: [up up up]. <object_0> <verb_0> from <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> in <environment_0>.
+Direction: [up up up]. <object_0> <verb_0>, <verb_1> behind <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> in <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> the <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> from the top to the bottom of the <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> from the bottom to the top of the <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> into the <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> towards a <environment_0>.
+Direction: [up up up]. <object_0> <verb_0> in a <environment_0>.
+Direction: [up up up]. <object_0> <verb_0>, <verb_1>.
+Direction: [up up up]. <object_0> <verb_0> <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left, <object_1> <verb_1> as <verb_2> across <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>, <object_1> <verb_1> in <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>, <verb_1> a <object_1>.
+Direction: [left left left]. <object_0> <verb_0> leftwards, <object_1> <verb_1> <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>, <object_1> <verb_1> softly.
+Direction: [left left left]. <object_0> <verb_0> leftwards on <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left along <environment_0>, <object_1> <verb_1>.
+Direction: [left left left]. <object_0> <verb_0> left through <environment_0>, <object_1> <verb_1> gently.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left down <environment_0>, <object_1> <verb_1> off <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left, <object_1> <verb_1> in <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left over <environment_0>, <object_1> <verb_1> in <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left, <object_1> <verb_1> smoothly as it <verb_2> across <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>, <object_1> <verb_1> the <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>, <object_1> <verb_1> in the <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left off <environment_0>, <object_1> <verb_1> gently on the <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left through <environment_0>, <object_1> <verb_1> under <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>.
+Direction: [left left left]. <object_0> <verb_0> left along <environment_0>, <object_1> <verb_1> rapidly beneath a vibrant <environment_1>.
+Direction: [left left left]. <object_0> <verb_0> left across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> right, <object_1> <verb_1> as <verb_2> across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> right across <environment_0>, <object_1> <verb_1> in <environment_1>.
+Direction: [right right right]. <object_0> <verb_0> right across <environment_0>, <verb_1> a <object_1>.
+Direction: [right right right]. <object_0> <verb_0> right across <environment_0>, <object_1> <verb_1> softly.
+Direction: [right right right]. <object_0> <verb_0> right along <environment_0>, <object_1> <verb_1>.
+Direction: [right right right]. <object_0> <verb_0> right through <environment_0>, <object_1> <verb_1> gently.
+Direction: [right right right]. <object_0> <verb_0> right across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> right down <environment_0>, <object_1> <verb_1> off <environment_1>.
+Direction: [right right right]. <object_0> <verb_0> right over <environment_0>, <object_1> <verb_1> in <environment_1>.
+Direction: [right right right]. <object_0> <verb_0> right, <object_1> <verb_1> smoothly as it <verb_2> across <environment_0>.
+Direction: [right right right]. <object_0> <verb_0> across <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> through <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> across <environment_0>.  
+Direction: [right right right]. <object_0> <verb_0> along <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> into <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> into <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> from <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> on <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0>, with majestic <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> into <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward into <environment_0>, spinning rapidly as it soars over <environment_1>.  
+Direction: [up up up]. <object_0> <verb_0> upward from <environment_0>, heading toward <environment_1>.  
+Direction: [up up up]. <object_0> <verb_0> upward from <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward into the air in <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward by <object_1>, spinning and twirling through <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward from <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward onto <environment_0> by <object_1>, standing tall against <environment_1> as it takes its place.  
+Direction: [up up up]. <object_0> <verb_0> upward, soaring high above <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> upward on an invisible wire during <environment_0>, the intricate floral designs glowing under the studio lights.  
+Direction: [up up up]. <object_0> <verb_0> upward at <environment_0>, the surface shimmering in the sunlight as it drifts higher.  
+Direction: [up up up]. <object_0> <verb_0> upward, <verb_1> above <environment_0>.  
+Direction: [up up up]. <object_0> <verb_0> from <environment_0>, <object_1> roaring as it <verb_1> into <environment_1>.  
+Direction: [up up up]. <object_0> <verb_0> and <verb_1>, soaring into <environment_0> above <environment_1>.  
+Direction: [up up up | up up up]. <object_0> <verb_0> by <object_1>, <verb_1> into <environment_0> above <environment_1>.  
+Direction: [up up up]. <object_0> <verb_0> on <environment_0>, <object_1> reflecting <environment_1>.  
+Direction: [up up up]. <object_0> <verb_0> on <environment_0>, <object_1> <verb_1> as <object_2> showcase detail.  
+Direction: [up up up]. <object_0> <verb_0> by <object_1>.  
+Direction: [down down down]. <object_0> <verb_0> <environment_0>, <object_1> <verb_1>.  
+Direction: [down down down]. <object_0> <verb_0> <environment_0>, <verb_1> <environment_1>.  
+Direction: [down down down]. <object_0> <verb_0>, <object_1> <verb_1>.  
+Direction: [down down down]. <object_0> <verb_0> downward along <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> back onto <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> toward <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> back to <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> in <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> into <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> onto <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward, <verb_1> on <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward by <object_1> from <environment_0>.  
+Direction: [down down down]. <object_0> <verb_0> downward to the pavement on <environment_0>.
+Direction: [down down down]. <object_0> <verb_0> downward onto <environment_0> from <environment_1>.
+Direction: [down down down]. <object_0> <verb_0> downward from <environment_0>, <verb_1> on <environment_1>.
+Direction: [left left left | right right right]. <object_0> <verb_0> leftward across <environment_0>, while <object_1> <verb_1> rightward.
+Direction: [right right right | left left left]. <object_0> <verb_0> rightward across <environment_0>, while <object_1> <verb_1> leftward.
+Direction: [left left left | right right right]. <object_0> <verb_0> leftward down <environment_0>, while <object_1> <verb_1> rightward.
+Direction: [right right right | left left left]. <object_0> <verb_0> rightward down <environment_0>, while <object_1> <verb_1> leftward.
+Direction: [left left left | right right right]. <object_0> <verb_0> leftward across <environment_0>, while <object_1> <verb_1> rightward.
+Direction: [right right right | left left left]. <object_0> <verb_0> rightward across <environment_0>, while <object_1> <verb_1> leftward.
+Direction: [right right right | left left left]. <object_0> <verb_0> right across <environment_0>, while <object_1> <verb_1> left.
+Direction: [left left left | right right right]. <object_0> <verb_0> left across <environment_0>, while <object_1> <verb_1> right.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward, while <object_1> <verb_1> downward.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward, while <object_1> <verb_1> downward.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward into the air, while <object_1> <verb_1> downward toward <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward into the air, while <object_1> <verb_1> downward toward <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward from <environment_0>, while <object_1> <verb_1> downward, gently landing in <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward from <environment_0>, while <object_1> <verb_1> downward, gently landing in <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward into <environment_0>, while <object_1> <verb_1> downward toward <environment_1>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward into the sky, while <object_1> <verb_1> downward to <environment_0>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward and <object_1> <verb_1> downward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward and <object_1> <verb_1> upward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward and <object_1> <verb_1> upward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward and <object_1> <verb_1> upward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward by <object_2> from <environment_0>, and <object_1> <verb_1> upward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward by <object_2>, and <object_1> <verb_1> upward from <environment_0>.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward toward <environment_0>, while <object_1> <verb_1> upward.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward into <environment_0>, while <object_1> <verb_1> downward.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward onto <environment_0>, while <object_1> <verb_1> upward to <environment_1>.
+Direction: [down down down | up up up]. <object_0> <verb_0> downward onto <environment_0>, while <object_1> <verb_1> upward to <environment_1>.
+Direction: [up up up | down down down]. <object_0> <verb_0> upward on <environment_0>, while <object_1> <verb_1> downward to <environment_1>.

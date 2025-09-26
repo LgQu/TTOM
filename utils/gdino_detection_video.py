@@ -20,15 +20,15 @@ CONFIG_PATH  = "GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py"
 WEIGHTS_PATH = "GroundingDINO/weights/groundingdino_swint_ogc.pth"
 # ----------------------------------------
 
-# ==== SAM2 配置（逐帧分割） ====
-USE_SAM2                  = True            # 关掉则不做分割
-SAM2_CFG                  = "configs/sam2.1/sam2.1_hiera_l.yaml"     # 按你的权重选择
-SAM2_CKPT                 = "sam2/checkpoints/sam2.1_hiera_large.pt"           # 修改为你的权重路径
-SEGMENT_ONLY_FIRST_FRAME  = False           # True 仅第1帧做分割（最快）
-SEGMENT_EVERY_N           = 1               # 每 N 帧分割一次（1=每帧）
-SAVE_MASKS                = True            # 保存单帧掩码 PNG
-MASKS_SUBDIR              = "masks"         # 掩码保存目录（视频输出子目录下）
-MASK_ALPHA_FILL           = 0.35            # 第1帧可视化时，mask 叠加透明度
+# ==== SAM2 Configuration (frame-by-frame segmentation) ====
+USE_SAM2                  = True            # Turn off to skip segmentation
+SAM2_CFG                  = "configs/sam2.1/sam2.1_hiera_l.yaml"     # Choose based on your weights
+SAM2_CKPT                 = "sam2/checkpoints/sam2.1_hiera_large.pt"           # Modify to your weight path
+SEGMENT_ONLY_FIRST_FRAME  = False           # True to segment only first frame (fastest)
+SEGMENT_EVERY_N           = 1               # Segment every N frames (1=every frame)
+SAVE_MASKS                = True            # Save single frame mask PNG
+MASKS_SUBDIR              = "masks"         # Mask save directory (under video output subdirectory)
+MASK_ALPHA_FILL           = 0.35            # Mask overlay transparency for first frame visualization
 # =========================================
 
 # sanity checks
@@ -42,7 +42,7 @@ print("Device:", device)
 # load once
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
 
-# ==== SAM2 导入与初始化 ====
+# ==== SAM2 Import and Initialization ====
 SAM2_AVAILABLE = False
 if USE_SAM2:
     try:
@@ -61,7 +61,7 @@ def init_sam2_predictor():
     return predictor
 
 def color_from_label(label: str) -> tuple:
-    """稳定可复现的颜色（BGR）"""
+    """Stable reproducible color (BGR)"""
     seed = abs(hash(label)) % (2**32)
     rng = np.random.default_rng(seed)
     c = rng.integers(64, 256, size=3, dtype=np.uint8)
@@ -88,7 +88,7 @@ def iter_videos(root: str):
             continue
         yield p
 
-# ==== 坐标转换：cxcywh_rel -> xyxy_rel / xyxy_abs ====
+# ==== Coordinate conversion: cxcywh_rel -> xyxy_rel / xyxy_abs ====
 def cxcywh_rel_to_xyxy_rel(cx, cy, w, h):
     x1 = max(0.0, cx - w * 0.5)
     y1 = max(0.0, cy - h * 0.5)
@@ -128,7 +128,7 @@ def run_on_video(video_path: Path, out_root: Path):
     if USE_SAM2:
         masks_root.mkdir(parents=True, exist_ok=True)
 
-    # 为每个目标建立固定的子目录：0_[name], 1_[name], ...
+    # Create fixed subdirectories for each target: 0_[name], 1_[name], ...
     target_dirs = []
     for i, tgt in enumerate(targets):
         d = masks_root / f"{i}_[{tgt}]"
@@ -149,7 +149,7 @@ def run_on_video(video_path: Path, out_root: Path):
     print(f"Targets: {targets}")
     idx = 0
 
-    # SAM2 预测器
+    # SAM2 predictor
     sam2_pred = None
     if USE_SAM2:
         if not SAM2_AVAILABLE:
@@ -164,15 +164,15 @@ def run_on_video(video_path: Path, out_root: Path):
             if not ok:
                 break
 
-            # 写临时 jpg 给 DINO
+            # Write temporary jpg for DINO
             fname = f"frame_{idx:06d}.jpg"
             tmp_path = str(tmp_dir / fname)
             cv2.imwrite(tmp_path, frame_bgr)
 
-            # DINO 读取（image_source=RGB）
+            # DINO read (image_source=RGB)
             image_source, image = load_image(tmp_path)
 
-            # 每个目标收集该帧的相对框（cx,cy,w,h）并转像素XYXY
+            # Collect relative boxes (cx,cy,w,h) for each target in this frame and convert to pixel XYXY
             boxes_per_target_abs = [[] for _ in targets]
             for t_idx, tgt in enumerate(targets):
                 caption = tgt if tgt.endswith(".") else tgt + "."
@@ -186,8 +186,8 @@ def run_on_video(video_path: Path, out_root: Path):
                 if len(phrases) > 0:
                     boxes_np = boxes.detach().cpu().numpy() if torch.is_tensor(boxes) else np.asarray(boxes)
                     for i_det in range(boxes_np.shape[0]):
-                        cx, cy, w, h = map(float, boxes_np[i_det])  # 相对(cx,cy,w,h)
-                        # 转绝对xyxy像素
+                        cx, cy, w, h = map(float, boxes_np[i_det])  # Relative (cx,cy,w,h)
+                        # Convert to absolute xyxy pixels
                         x1 = (cx - w * 0.5) * W
                         y1 = (cy - h * 0.5) * H
                         x2 = (cx + w * 0.5) * W
@@ -198,17 +198,17 @@ def run_on_video(video_path: Path, out_root: Path):
                         y2 = max(0.0, min(y2, H - 1))
                         if x2 < x1: x1, x2 = x2, x1
                         if y2 < y1: y1, y2 = y2, y1
-                        # 非空框才收
+                        # Only collect non-empty boxes
                         if (x2 - x1) > 1e-3 and (y2 - y1) > 1e-3:
                             boxes_per_target_abs[t_idx].append([x1, y1, x2, y2])
 
-            # 是否在本帧做分割
+            # Whether to segment in this frame
             do_seg = USE_SAM2 and (
                 (SEGMENT_ONLY_FIRST_FRAME and idx == 0) or
                 ((not SEGMENT_ONLY_FIRST_FRAME) and (idx % SEGMENT_EVERY_N == 0))
             )
 
-            # 每个目标生成一张 union 掩码（无框则全黑）
+            # Generate one union mask for each target (black if no boxes)
             if do_seg:
                 sam2_pred.set_image(image_source)  # RGB
                 union_masks = []
@@ -223,12 +223,12 @@ def run_on_video(video_path: Path, out_root: Path):
                         tgt_mask |= m_bin
                     union_masks.append(tgt_mask)
 
-                # 保存每个目标的掩码（masks/0_[name]/frame_xxxxxx.png）
+                # Save mask for each target (masks/0_[name]/frame_xxxxxx.png)
                 for t_idx, tgt in enumerate(targets):
                     out_png = target_dirs[t_idx] / f"frame_{idx:06d}.png"
                     cv2.imwrite(str(out_png), union_masks[t_idx] * 255)
 
-                # 第1帧：叠加并保存 first_frame_segmented.jpg
+                # First frame: overlay and save first_frame_segmented.jpg
                 if not first_seg_written:
                     base_rgb = image_source.copy()
                     overlay_rgb = base_rgb.copy()
@@ -248,7 +248,7 @@ def run_on_video(video_path: Path, out_root: Path):
                     cv2.imwrite(str(vid_out_dir / "first_frame_segmented.jpg"), out_bgr_seg)
                     first_seg_written = True
 
-            # 清理 tmp
+            # Clean up tmp
             try:
                 os.remove(tmp_path)
             except OSError:

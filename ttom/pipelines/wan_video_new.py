@@ -756,10 +756,10 @@ class WanVideoPipeline(BasePipeline):
 
 def set_lora_scale(model, factor: float, *, verbose: bool = True, sample_n: int = 5):
     """
-    将模型中所有 LoRA 层的 scaling / lora_alpha 统一乘以 factor。
-    - verbose: 是否打印调试信息
-    - sample_n: 最多展示前 sample_n 个层（或键）的 before/after 变化
-    返回: dict(summary)，包含命中统计
+    Multiply all LoRA layer scaling / lora_alpha by factor uniformly.
+    - verbose: whether to print debug info
+    - sample_n: show at most first sample_n layers (or keys) before/after changes
+    Returns: dict(summary), containing hit statistics
     """
     import torch
     hits_layer = 0
@@ -773,23 +773,23 @@ def set_lora_scale(model, factor: float, *, verbose: bool = True, sample_n: int 
             continue
         hits_layer += 1
 
-        # 1) 标量 / tensor scaling
+        # 1) Scalar / tensor scaling
         if hasattr(m, "scaling") and not isinstance(m.scaling, dict):
-            # 记录 before
+            # Record before
             before = (m.scaling.detach().clone() if torch.is_tensor(m.scaling) else float(m.scaling))
-            # 首次保存原值
+            # Save original value for first time
             if not hasattr(m, "_saved_scaling"):
                 base = m.scaling
                 m._saved_scaling = (base.detach().clone() if torch.is_tensor(base) else float(base))
             base = m._saved_scaling
-            # 更新
+            # Update
             m.scaling = (base.to(m.lora_A.weight.device) if torch.is_tensor(base) else base) * factor
             after = (m.scaling.detach().clone() if torch.is_tensor(m.scaling) else float(m.scaling))
             hits_scalar += 1
             if len(samples) < sample_n:
                 samples.append(("scalar_scaling", before, after, m.__class__.__name__))
 
-        # 2) 多适配器 dict: scaling
+        # 2) Multi-adapter dict: scaling
         if hasattr(m, "scaling") and isinstance(m.scaling, dict):
             if not hasattr(m, "_saved_scaling"):
                 m._saved_scaling = {k: float(v) for k, v in m.scaling.items()}
@@ -802,7 +802,7 @@ def set_lora_scale(model, factor: float, *, verbose: bool = True, sample_n: int 
                 if len(samples) < sample_n:
                     samples.append((f"dict_scaling[{k}]", before, after, m.__class__.__name__))
 
-        # 3) 多适配器 dict: lora_alpha（有些实现用它控制强度）
+        # 3) Multi-adapter dict: lora_alpha (some implementations use it to control intensity)
         if hasattr(m, "lora_alpha") and isinstance(m.lora_alpha, dict):
             if not hasattr(m, "_saved_lora_alpha"):
                 m._saved_lora_alpha = {k: float(v) for k, v in m.lora_alpha.items()}
@@ -1206,7 +1206,7 @@ class WanVideoUnit_VACE(PipelineUnit):
             else:
                 vace_mask = pipe.preprocess_video(vace_mask)
             
-            # # === 构建 vace_attn_mask ===
+            # # === Build vace_attn_mask ===
             video_tensor = torch.stack([pil_to_tensor(f) for f in vace_raw_video])
             gray_video = video_tensor[:, 0]
             unique_vals = torch.unique(gray_video)
@@ -1218,7 +1218,7 @@ class WanVideoUnit_VACE(PipelineUnit):
             attn_mask = attn_mask.to(dtype=pipe.torch_dtype, device=pipe.device)
             # print("attn_mask.shape: ", attn_mask.shape)  # [T, H, W]
 
-            # 插值：将 [1, T, H, W] → [1, 1, T', H, W]，对齐 latent 尺寸
+            # Interpolation: [1, T, H, W] → [1, 1, T', H, W], align latent dimensions
             attn_mask = torch.nn.functional.interpolate(
                 attn_mask,
                 size=(21, attn_mask.shape[3] // 16, attn_mask.shape[4] // 16),
@@ -1367,10 +1367,10 @@ class WanVideoUnit_LAIV(PipelineUnit):
 
         layout_list = []
 
-        # step 1: 获取 interpolated masks
+        # step 1: Get interpolated masks
         masks_dict = utils.interpolate_instance_masks(instance_boxes, canvas_h, canvas_w, num_frames=num_frames)
 
-        # step 2: 按照实例组织为 layout_list
+        # step 2: Organize by instance into layout_list
         for inst_id in sorted(masks_dict.keys()):
             masks = masks_dict[inst_id]  # shape: (21, H, W)
             layout_list.append({
@@ -1379,7 +1379,7 @@ class WanVideoUnit_LAIV(PipelineUnit):
                 "masks": [masks[i] for i in range(masks.shape[0])]  # List of 21 masks
             })
 
-        # step 3: 填入输入结构
+        # step 3: Fill input structure
         inputs_posi["layout"] = layout_list
         # utils.vis_layout(layout_list)
 

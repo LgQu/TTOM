@@ -167,7 +167,7 @@ class SelfAttention(nn.Module):
         x = self.attn(q, k, v)
         return self.o(x)
 
-torch.backends.cuda.matmul.allow_tf32 = True  # 提升 FP32 性能（Ampere+）
+torch.backends.cuda.matmul.allow_tf32 = True  # Improve FP32 performance (Ampere+)
 
 @torch.no_grad()
 def manual_attn_weights_firstn(q_inst: torch.Tensor,
@@ -177,24 +177,24 @@ def manual_attn_weights_firstn(q_inst: torch.Tensor,
                                chunk_k: int | None = None,
                                upcast: bool = True) -> torch.Tensor:
     """
-    从 q_inst, k_img 手动计算 cross-attention 的 softmax 权重（不需要 v）。
-    兼容你的shape：q_inst=[B,L_q,H*d], k_img=[B,L_k,H*d]
-    返回:
-        attn_map: [B, H, n, L_k]  （n = n_tokens 或 L_q）
-    参数:
-        num_heads: 你的 head 数 H
-        n_tokens : 只取前 n 个 query token；None 表示用全部 L_q
-        chunk_k  : 如果 L_k 很大，可按列分块（如 1024/2048）；None 表示不分块
-        upcast   : 计算时上浮到 fp32 提升稳定性，然后回落到输入 dtype
+    Manually calculate cross-attention softmax weights from q_inst, k_img (no v needed).
+    Compatible with your shape: q_inst=[B,L_q,H*d], k_img=[B,L_k,H*d]
+    Returns:
+        attn_map: [B, H, n, L_k]  (n = n_tokens or L_q)
+    Parameters:
+        num_heads: your head count H
+        n_tokens : only take first n query tokens; None means use all L_q
+        chunk_k  : if L_k is large, can chunk by columns (e.g. 1024/2048); None means no chunking
+        upcast   : upcast to fp32 during computation for stability, then fall back to input dtype
     """
-    assert q_inst.shape[-1] == k_img.shape[-1], "q/k 最后一维不一致"
+    assert q_inst.shape[-1] == k_img.shape[-1], "q/k last dimension mismatch"
     B, L_q, D = q_inst.shape
     _, L_k, Dk = k_img.shape
-    assert D % num_heads == 0, "D 必须能被 num_heads 整除"
+    assert D % num_heads == 0, "D must be divisible by num_heads"
     d_head = D // num_heads
     n = L_q if n_tokens is None else min(n_tokens, L_q)
 
-    # 选前 n 个 query
+    # Select first n queries
     q = q_inst[:, :n, :]            # [B, n, H*d]
     k = k_img                       # [B, L_k, H*d]
 
@@ -202,23 +202,23 @@ def manual_attn_weights_firstn(q_inst: torch.Tensor,
     q_h = rearrange(q, "b L (h d) -> b h L d", h=num_heads, d=d_head).contiguous()
     k_h = rearrange(k, "b L (h d) -> b h L d", h=num_heads, d=d_head).contiguous()
 
-    # 上浮精度（更稳）
+    # Upcast precision (more stable)
     comp_dtype = torch.float32 if upcast else q_h.dtype
     qh = q_h.to(comp_dtype)
     kh = k_h.to(comp_dtype)
     scale = 1.0 / math.sqrt(d_head)
 
-    # 不分块：一次性算 scores→softmax
+    # No chunking: calculate scores→softmax at once
     if chunk_k is None or chunk_k >= L_k:
         scores = torch.matmul(qh, kh.transpose(-2, -1)) * scale      # [B,H,n,L_k]
         attn = torch.softmax(scores, dim=-1)
         return attn.to(q_inst.dtype)
 
-    # 分块：两遍 log-sum-exp（稳定/省显存）
+    # Chunking: two-pass log-sum-exp (stable/memory efficient)
     B_, H_, n_ = B, num_heads, n
     device = q_inst.device
-    m = torch.full((B_, H_, n_), -float("inf"), dtype=comp_dtype, device=device)  # 行最大
-    z = torch.zeros((B_, H_, n_), dtype=comp_dtype, device=device)                # 行 exp 和
+    m = torch.full((B_, H_, n_), -float("inf"), dtype=comp_dtype, device=device)  # Row max
+    z = torch.zeros((B_, H_, n_), dtype=comp_dtype, device=device)                # Row exp sum
     for start in range(0, L_k, chunk_k):
         end = min(start + chunk_k, L_k)
         ks  = kh[:, :, start:end, :]                              # [B,H,ck,d]
@@ -232,7 +232,7 @@ def manual_attn_weights_firstn(q_inst: torch.Tensor,
         end = min(start + chunk_k, L_k)
         ks  = kh[:, :, start:end, :]
         sc  = torch.matmul(qh, ks.transpose(-2, -1)) * scale      # [B,H,n,ck]
-        attn_chunk = torch.exp(sc - m.unsqueeze(-1)) / z.unsqueeze(-1)  # 归一化
+        attn_chunk = torch.exp(sc - m.unsqueeze(-1)) / z.unsqueeze(-1)  # Normalize
         attn[:, :, :, start:end] = attn_chunk
 
     return attn.to(q_inst.dtype)

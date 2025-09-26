@@ -296,7 +296,7 @@ def compute_loss(
                 if n not in layout_ids:
                     continue
                 layout_n = next((x for x in layout if x["id"] == n), None)  # {"id": int, "masks": List[Tensor(H, W)]}
-                mask_seq = layout_n["masks"]  # List[Tensor(H, W)], 长度 T=21
+                mask_seq = layout_n["masks"]  # List[Tensor(H, W)], length T=21
                 same_name_entries = name_groups[layout_n["name"]]
 
                 # 3. attention map: B=1, attention distribution for all query patches: [S, L]
@@ -382,7 +382,7 @@ def compute_loss(
                             )
                             attn_frame_resized_t1 = F.interpolate(
                                 attn_frame_t1.unsqueeze(0).unsqueeze(0),   # (1,1,H_p,W_p)
-                                size=(H_t, W_t),                    # 目标 (H_tgt, W_tgt)
+                                size=(H_t, W_t),                    # Target (H_tgt, W_tgt)
                                 mode="bilinear",
                                 align_corners=False
                             ).squeeze(0).squeeze(0)
@@ -548,7 +548,7 @@ def guidance_lora(
                 torch.cuda.empty_cache()
                 break
 
-            # (c) 反向 & 更新 LoRA
+            # (c) Backward & update LoRA
             opt.zero_grad()
             loss.backward()
             opt.step()

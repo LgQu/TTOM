@@ -84,7 +84,7 @@ def generate_first_frame_prompt(prompt=None, prompt_id=None, skip_if_exists=Fals
     cache_init()
     cache = get_cache()
 
-    # 1. 获取 enriched_prompt 和 layout
+    # 1. Get enriched_prompt and layout
     if prompt_id is not None:
         print(f"\n[prompt_id]: {prompt_id}")
         prompt_entry = cache.get(prompt_id, {})
@@ -102,16 +102,16 @@ def generate_first_frame_prompt(prompt=None, prompt_id=None, skip_if_exists=Fals
     else:
         raise ValueError("Either prompt or prompt_id must be provided.")
 
-    # 2. 是否跳过已存在的
+    # 2. Whether to skip existing
     if skip_if_exists and "first_frame_prompt" in cache.get(prompt_id, {}):
         print(f"[⚡ Skip] First-frame prompt already exists for {prompt_id}")
         return
 
-    # 3. 生成第一帧视觉描述
+    # 3. Generate first frame visual description
     first_frame_prompt = extract_first_frame_prompt(prompt, layout)
     print(f"\n[✅ Generated First Frame Prompt]: {first_frame_prompt}")
 
-    # 4. 更新缓存
+    # 4. Update cache
     cache[prompt_id]["first_frame_prompt"] = first_frame_prompt
     update_cache(cache)
 

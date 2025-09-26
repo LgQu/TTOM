@@ -107,7 +107,7 @@ python generation/gen_cache.py \
 - `data/layout/boxes_{cache_name}/layout_{pid}.gif` - Layout visualization GIFs showing object positions over time
 
 
-### Phase 2: Video Generation (`gen_benchmarks`)
+### Phase 2: Video Generation
 
 This phase generates videos using the extracted metadata and layouts.
 

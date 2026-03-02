@@ -1,72 +1,52 @@
 # TTOM: Test-Time Optimization and Memorization for Compositional Video Generation
 
-Test-time optimization & memorization framework for **compositional video generation** built on top of **Wan2.1** and DiffSynth.  
+<p align="center">
+  <img src="assets/framework.png" alt="TTOM Framework Overview" width="85%">
+</p>
 
 <p align="center">
-  <img src="assets/framework.pdf" alt="TTOM Framework Overview" width="75%">
+  <strong>TTOM: Test-Time Optimization and Memorization for Compositional Video Generation</strong>
+</p>
+
+<p align="center">
+  [ICLR 2026] Official repository
 </p>
 
 ---
 
-## News
+## 🔥 News
 
-- 2026-01: TTOM has been **accepted to ICLR 2026**.
-- 2025-12: **TTOM** codebase released.
+- **2026-01**: 🎉 TTOM has been **accepted to ICLR 2026**!
+- **2025-12**: 🔥 Released inference code and model weights.
 
----
+## 🗓️ Todo List
 
-## Highlights
+- [x] Release inference code
+- [x] Release model weights
+- [ ] Release training code
 
-- **Compositional video generation**: Benchmarks and pipelines for challenging motion & attribute binding scenarios.
-- **Test-time optimization + memorization**: Iteratively refines cross-attention and LoRA parameters at inference time.
-- **Layout-aware generation**: Uses GPT-4o to extract object metadata and generate spatial-temporal layouts.
-- **Attention-layout evaluation**: End-to-end pipeline for attention map extraction, GroundingDINO + SAM2 segmentation, and mIoU analysis.
-- **Built on Wan2.1 & DiffSynth**: Reuses efficient Wan2.1 video backbone and DiffSynth engineering stack ([Wan2.1](https://github.com/Wan-Video/Wan2.1), [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio)).
+## 📖 Overview
+
+**TTOM** is a test-time optimization and memorization framework for **compositional video generation**. It addresses the challenge of generating videos with multiple objects, attributes, and motions that faithfully follow complex text prompts.
+
+The framework operates in two phases:
+
+1. **Meta Extraction & Layout Generation** (`gen_cache`) – Uses GPT-4o to extract object metadata and generate spatial-temporal layouts from text prompts.
+2. **Video Generation with TTOM** (`gen_benchmarks`) – Generates videos using [Wan2.1](https://github.com/Wan-Video/Wan2.1) conditioned on extracted metadata and layouts, with iterative test-time optimization of cross-attention via LoRA.
+
+Built on top of [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio), an efficient diffusion inference engine.
+
+## 🎥 Qualitative Results
 
 <p align="center">
-  <img src="assets/qualitative_t2vcompbench.pdf" alt="Qualitative Results on T2VCompBench" width="90%">
+  <img src="assets/qualitative_t2vcompbench.png" alt="Qualitative Results on T2VCompBench" width="90%">
 </p>
 
----
+<p align="center">
+  <img src="assets/mem_qualitative.png" alt="Memorization Qualitative Results" width="90%">
+</p>
 
-## Table of Contents
-
-- [TTOM: Test-Time Optimization and Memorization for Compositional Video Generation](#ttom-test-time-optimization-and-memorization-for-compositional-video-generation)
-  - [News](#news)
-  - [Highlights](#highlights)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Project Structure](#project-structure)
-  - [Installation](#installation)
-    - [Prerequisites](#prerequisites)
-    - [Install TTOM](#install-ttom)
-    - [Download Wan2.1 model](#download-wan21-model)
-    - [Optional: GroundingDINO \& SAM2](#optional-groundingdino--sam2)
-  - [Configuration](#configuration)
-  - [Quickstart](#quickstart)
-    - [Step 1: Build layout cache (`gen_cache`)](#step-1-build-layout-cache-gen_cache)
-    - [Step 2: Generate videos (`gen_benchmarks`)](#step-2-generate-videos-gen_benchmarks)
-  - [Advanced Usage](#advanced-usage)
-    - [Meta extraction \& layout generation](#meta-extraction--layout-generation)
-    - [Video generation with TTOM strategies](#video-generation-with-ttom-strategies)
-    - [Attention map analysis](#attention-map-analysis)
-  - [Output Structure](#output-structure)
-  - [Acknowledgements](#acknowledgements)
-
----
-
-## Overview
-
-TTOM is a framework for compositional video generation that consists of two main phases:
-
-1. **Meta Extraction and Layout Generation** (`gen_cache`) – Uses GPT-4o to extract object metadata and generate spatial layouts from prompts.
-2. **Video Generation** (`gen_benchmarks`) – Generates videos using Wan2.1 conditioned on the extracted metadata and layouts with test-time optimization.
-
-Additionally, the framework includes **attention map analysis** (`get_attnmap.py` and evaluation utilities) for quantifying attention-layout overlap between cross-modal attention maps and segmentation maps.
-
----
-
-## Project Structure
+## 📂 Project Structure
 
 ```text
 TTOM/
@@ -83,9 +63,7 @@ TTOM/
 └── scripts/                      # Batch processing scripts
 ```
 
----
-
-## Installation
+## 🛠️ Installation
 
 ### Prerequisites
 
@@ -93,59 +71,48 @@ TTOM/
 - CUDA-capable GPU (recommended ≥ 24 GB VRAM for Wan2.1-T2V-14B)
 - `pip` and a virtualenv/conda environment
 
-> **Note:** Steps 3 and 4 below are **only required** if you want to perform attention-layout overlap analysis using GroundingDINO detection and SAM2 segmentation.  
-> For **basic video generation**, only step 1 and 2 are required.
+> 💡 **Note:** [GroundingDINO](#optional-groundingdino--sam2) and [SAM2](#optional-groundingdino--sam2) are **only required** for attention-layout overlap evaluation. For basic video generation, skip them.
 
-TTOM is built on top of **DiffSynth**, an efficient diffusion inference engine.  
-For more information about DiffSynth, see: [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio).
-
-### Install TTOM
+### 1. Install TTOM
 
 ```bash
+git clone https://github.com/LgQu/TTOM.git
+cd TTOM
 pip install -r requirements.txt
 pip install -e .
 ```
 
-### Download Wan2.1 model
-
-Download the **Wan2.1-T2V-14B** model from Hugging Face into the `models` directory:
+### 2. Download Wan2.1-T2V-14B
 
 ```bash
-# Install huggingface_hub if not already installed
 pip install "huggingface_hub[cli]"
-
-# Download the model
 huggingface-cli download Wan-AI/Wan2.1-T2V-14B --local-dir ./models/Wan2.1-T2V-14B
 ```
 
-> The download can be large and may take some time.  
-> The model will be saved to: `./models/Wan2.1-T2V-14B/`.
+> 💡 The download can be large. The model will be saved to `./models/Wan2.1-T2V-14B/`.
 
-### Optional: GroundingDINO & SAM2
+### 3. Optional: GroundingDINO & SAM2
 
-These components are used **only for attention-layout overlap evaluation**.
+<details>
+<summary>Click to expand (only needed for attention-layout evaluation)</summary>
 
 **GroundingDINO**
 
 ```bash
-cd TTOM
 git clone https://github.com/IDEA-Research/GroundingDINO.git
-cd GroundingDINO
-pip install -e .
+cd GroundingDINO && pip install -e . && cd ..
 ```
 
 **SAM2**
 
 ```bash
-cd TTOM
 git clone https://github.com/facebookresearch/segment-anything-2.git sam2
-cd sam2
-pip install -e .
+cd sam2 && pip install -e . && cd ..
 ```
 
----
+</details>
 
-## Configuration
+### 4. Configuration
 
 Set up your OpenAI API key for GPT-4o prompt processing:
 
@@ -159,16 +126,9 @@ On Windows PowerShell:
 $env:OPENAI_API_KEY = "your-api-key-here"
 ```
 
----
+## 🚀 Quickstart
 
-## Quickstart
-
-This section shows how to:
-
-1. Build a **layout cache** using GPT-4o.  
-2. Generate **videos** from the cache with TTOM.
-
-### Step 1: Build layout cache (`gen_cache`)
+### Step 1: Build Layout Cache
 
 ```bash
 python generation/gen_cache.py \
@@ -179,14 +139,11 @@ python generation/gen_cache.py \
     --skip_if_exists
 ```
 
-**Outputs**
+**Outputs:**
+- `cache/{benchmark_source}_{benchmark_type}-gpt_4o.json` – enriched prompts, object metadata, and layouts.
+- `data/layout/boxes_{cache_name}/layout_{pid}.gif` – layout visualization GIFs.
 
-- `cache/{benchmark_source}_{benchmark_type}-gpt_4o.json`  
-  JSON cache with enriched prompts, object metadata, and spatial-temporal layouts.
-- `data/layout/boxes_{cache_name}/layout_{pid}.gif`  
-  GIF visualizations showing object positions over time for each prompt.
-
-### Step 2: Generate videos (`gen_benchmarks`)
+### Step 2: Generate Videos with TTOM
 
 ```bash
 python generation/gen_benchmarks.py \
@@ -206,24 +163,14 @@ python generation/gen_benchmarks.py \
     --strat_id 0
 ```
 
-**Typical outputs**
+**Outputs:**
+- `data/benchmarks/{cache_type}/.../{pid}_{tag}.mp4` – generated videos.
 
-- `data/benchmarks/{cache_type}/{prefix}_wan_enriched_lora32_jsdGs_g{max_guidance_step}_ls{max_lora_step}_i{max_iter}_[{target_modules}]/pid{pid}_{tag}.mp4`  
-  Generated videos for each `pid`.
+## 🔧 Advanced Usage
 
----
+### Meta Extraction & Layout Generation
 
-## Advanced Usage
-
-### Meta extraction & layout generation
-
-This stage uses GPT-4o to:
-
-- Enrich prompts.
-- Extract object instances and attributes.
-- Generate spatial-temporal layouts.
-
-Run:
+Uses GPT-4o to enrich prompts, extract object instances/attributes, and generate spatial-temporal layouts:
 
 ```bash
 python generation/gen_cache.py \
@@ -234,15 +181,9 @@ python generation/gen_cache.py \
     --skip_if_exists
 ```
 
-Key behaviors:
+### Video Generation with TTOM Strategies
 
-- **Prompt enrichment** with GPT-4o.  
-- **Object metadata extraction** (instances, attributes, relations).  
-- **Layout generation** describing positions over time.
-
-### Video generation with TTOM strategies
-
-`gen_benchmarks.py` generates videos using Wan2.1 with TTOM-style test-time optimization and memorization.
+`gen_benchmarks.py` generates videos using Wan2.1 with TTOM-style test-time optimization and memorization:
 
 ```bash
 python generation/gen_benchmarks.py \
@@ -264,84 +205,72 @@ python generation/gen_benchmarks.py \
     --strat_id 0
 ```
 
-Key arguments:
+<details>
+<summary>📋 Full argument reference</summary>
 
-- `--pid`: Sample ID to generate (required).  
-- `--cache_type`: Cache name, e.g. `t2vcompbench_motion_binding_gpt-4o`.  
-- `--guidance_type`: `"lora"`, `"lvd"`, or `"none"`.  
-- `--target_layers`: List of transformer layers for applying guidance.  
-- `--max_iter`: Number of TTOM iterations.  
-- `--max_guidance_step`, `--max_lora_step`: Steps for guidance and LoRA updates.  
-- `--target_modules`: Modules to apply LoRA (e.g. cross-attention q/k/v/o).  
-- `--jsd_loss_weight`, `--com_loss_weight`: Loss weights for TTOM objectives.  
-- `--strat_id`: TTOM strategy (0 = update, 1 = load, 2 = load+update).
+| Argument | Description | Default |
+|---|---|---|
+| `--pid` | Sample ID to generate | *required* |
+| `--cache_type` | Cache file name | `t2vcompbench_motion_binding_gpt-4o` |
+| `--guidance_type` | Guidance type: `lora`, `lvd`, `none` | `lora` |
+| `--target_layers` | Transformer layers for guidance | `[3]` |
+| `--max_iter` | Number of TTOM iterations | `8` |
+| `--max_guidance_step` | Max guidance steps per iteration | `5` |
+| `--max_lora_step` | Max LoRA update steps per iteration | `5` |
+| `--target_modules` | Modules to apply LoRA | `cross_attn.q,cross_attn.k,cross_attn.v,cross_attn.o` |
+| `--jsd_loss_weight` | JSD loss weight | `1.0` |
+| `--com_loss_weight` | Composition loss weight | `0.0` |
+| `--min_loss_value` | Min loss value threshold | `0.03` |
+| `--save_lora_weight` | Save LoRA weights | `False` |
+| `--save_mask` | Save attention masks | `False` |
+| `--skip_existed_prompt` | Skip existing outputs | `False` |
+| `--prefix` | Output directory prefix | `""` |
+| `--strat_id` | TTOM strategy (0=update, 1=load, 2=load+update) | `0` |
 
-### Attention map analysis
+</details>
 
-This pipeline quantifies how well attention aligns with detected objects and layouts.
+### Attention Map Analysis
 
-1. **Generate attention maps** (using prompts from `TTOM/cache/cache_train_motion_gpt-4o.json`):
+<details>
+<summary>Click to expand full evaluation pipeline</summary>
 
-   ```bash
-   # Note: Before running, configure CONDA_PYTHON and BASE_DIR in the script
-   bash scripts/run_attnmap_batch.sh
-   ```
+**1. Generate attention maps:**
 
-   Outputs:
+```bash
+bash scripts/run_attnmap_batch.sh
+```
 
-   - `data/attn_maps/wan2.1-t2v-14b/pid{pid}_insts{insts_str}.pt`
-   - `data/attn_maps/wan21_lora/{cache_type}/pid{pid}_insts{insts_str}.pt`
+> 💡 Before running, configure `CONDA_PYTHON` and `BASE_DIR` in the script.
 
-2. **Run GroundingDINO detection + SAM2 segmentation**:
+**2. Run GroundingDINO detection + SAM2 segmentation:**
 
-   ```bash
-   python utils/gdino_detection_video.py
-   ```
+```bash
+python utils/gdino_detection_video.py
+```
 
-   This script:
+**3. Compute mIoU:**
 
-   - Detects objects in generated videos using GroundingDINO.  
-   - Performs segmentation with SAM2.  
-   - Saves detection results and masks.
+```bash
+python utils/evaluate_miou.py \
+    --attn_dir data/attn_maps/wan21_lora/ \
+    --dino_dir data/dino_results_batch/ \
+    --output_dir data/miou_summary/
+```
 
-   Outputs:
+**4. Visualize attention maps:**
 
-   - `data/dino_results_batch/{video_name}/` – Detection results with bounding boxes and scores.  
-   - `data/dino_results_batch/{video_name}/masks/` – Segmentation masks (PNG).
+```bash
+python utils/visualize_attn_maps.py \
+    --pid 0 \
+    --step_id 40 \
+    --layer_id 3 \
+    --inst_id 0 \
+    --save
+```
 
-3. **Compute mIoU between attention and masks**:
+</details>
 
-   ```bash
-   python utils/evaluate_miou.py \
-       --attn_dir data/attn_maps/wan21_lora/ \
-       --dino_dir data/dino_results_batch/ \
-       --output_dir data/miou_summary/
-   ```
-
-   Outputs:
-
-   - `data/miou_summary/` – mIoU evaluation results and statistics.  
-   - Plots and metrics for attention-layout overlap.
-
-4. **Visualize attention maps and detections**:
-
-   ```bash
-   python utils/visualize_attn_maps.py \
-       --pid 0 \
-       --step_id 40 \
-       --layer_id 3 \
-       --inst_id 0 \
-       --save
-   ```
-
-   Outputs:
-
-   - `data/attention_visualizations/` – Heatmap visualizations of attention maps.  
-   - Key-frame attention analysis plots.
-
----
-
-## Output Structure
+## 📁 Output Structure
 
 ```text
 data/
@@ -349,20 +278,26 @@ data/
 ├── dino_results_batch/   # GroundingDINO + SAM2 detection/segmentation results
 ├── miou_summary/         # mIoU evaluation results and summary stats
 ├── benchmarks/           # Generated videos
-└── layout/               # Layout visualizations (e.g., GIFs)
+└── layout/               # Layout visualizations (GIFs)
 ```
 
----
+## 🙏 Acknowledgements
 
-## Acknowledgements
+We thank the authors and maintainers of the following projects:
 
-TTOM builds upon and is inspired by the following excellent open-source projects:
+- [Wan2.1](https://github.com/Wan-Video/Wan2.1) – Open and advanced large-scale video generative models.
+- [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) – Efficient diffusion model inference engine.
+- [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO) – Open-set object detection with language grounding.
+- [SAM2](https://github.com/facebookresearch/segment-anything-2) – Segment Anything 2 for high-quality segmentation.
 
-- **Wan2.1** – Open and advanced large-scale video generative models. See [Wan2.1 repository](https://github.com/Wan-Video/Wan2.1).  
-- **DiffSynth-Studio** – Efficient diffusion model inference engine.  
-- **GroundingDINO** – Open-set object detection with language grounding.  
-- **SAM2** – Segment Anything 2 for high-quality segmentation.  
-- **OpenAI GPT-4o** – Used for prompt enrichment and metadata extraction.
+## ⭐ Citation
 
-We thank the authors and maintainers of these projects for making their work publicly available.
+If you find TTOM useful, please consider giving this repository a star ⭐ and citing our paper:
 
+```bibtex
+@inproceedings{ttom2026iclr,
+  title={TTOM: Test-Time Optimization and Memorization for Compositional Video Generation},
+  year={2026},
+  booktitle={International Conference on Learning Representations (ICLR)}
+}
+```

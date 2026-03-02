@@ -9,7 +9,19 @@
 </p>
 
 <p align="center">
-  [ICLR 2026] Official repository
+  Leigang Qu<sup>1*</sup>, Ziyang Wang<sup>1*</sup>, Na Zheng<sup>1</sup>, Wenjie Wang<sup>2</sup>, Liqiang Nie<sup>3</sup>, Tat-Seng Chua<sup>1</sup>
+  <br>
+  <sup>1</sup>NExT++ Lab, National University of Singapore &nbsp;&nbsp; <sup>2</sup>University of Science and Technology of China &nbsp;&nbsp; <sup>3</sup>Harbin Institute of Technology (Shenzhen)
+  <br>
+  <sup>*</sup>Equal Contribution
+</p>
+
+<p align="center">
+  📑 <a href="https://arxiv.org/abs/2510.07940">arXiv</a> &nbsp;&nbsp;|&nbsp;&nbsp; 🌐 <a href="https://ttom-t2v.github.io/">Project Page</a> &nbsp;&nbsp;|&nbsp;&nbsp; 🖥️ <a href="https://github.com/LgQu/TTOM">GitHub</a>
+</p>
+
+<p align="center">
+  <b>[ICLR 2026]</b> Official repository
 </p>
 
 ---
@@ -17,12 +29,7 @@
 ## 🔥 News
 
 - **2026-01**: 🎉 TTOM has been **accepted to ICLR 2026**!
-- **2025-12**: 🔥 Released inference code. TTOM is **training-free** — no additional model weights or fine-tuning required.
-
-## 🗓️ Todo List
-
-- [x] Release inference code
-- [ ] Release evaluation scripts & benchmarks
+- **2025-12**: 🔥 Released inference code.
 
 ## 📖 Overview
 
@@ -403,9 +410,11 @@ We thank the authors and maintainers of the following projects:
 If you find TTOM useful, please consider giving this repository a star ⭐ and citing our paper:
 
 ```bibtex
-@inproceedings{ttom2026iclr,
-  title={TTOM: Test-Time Optimization and Memorization for Compositional Video Generation},
-  year={2026},
-  booktitle={International Conference on Learning Representations (ICLR)}
+@article{qu2025ttom,
+  title   = {TTOM: Test-Time Optimization and Memorization for Compositional Video Generation},
+  author  = {Leigang Qu and Ziyang Wang and Na Zheng and Wenjie Wang and Liqiang Nie and Tat-Seng Chua},
+  journal = {arXiv preprint arXiv:2510.07940},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2510.07940}
 }
 ```

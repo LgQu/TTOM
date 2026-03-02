@@ -17,17 +17,16 @@
 ## 🔥 News
 
 - **2026-01**: 🎉 TTOM has been **accepted to ICLR 2026**!
-- **2025-12**: 🔥 Released inference code and model weights.
+- **2025-12**: 🔥 Released inference code. TTOM is **training-free** — no additional model weights or fine-tuning required.
 
 ## 🗓️ Todo List
 
 - [x] Release inference code
-- [x] Release model weights
-- [ ] Release training code
+- [ ] Release evaluation scripts & benchmarks
 
 ## 📖 Overview
 
-**TTOM** is a test-time optimization and memorization framework for **compositional video generation**. It addresses the challenge of generating videos with multiple objects, attributes, and motions that faithfully follow complex text prompts.
+**TTOM** is a **training-free**, test-time optimization and memorization framework for **compositional video generation**. It addresses the challenge of generating videos with multiple objects, attributes, and motions that faithfully follow complex text prompts — without any additional training or fine-tuning.
 
 The framework operates in two phases:
 
@@ -45,6 +44,115 @@ Built on top of [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studi
 <p align="center">
   <img src="assets/mem_qualitative.png" alt="Memorization Qualitative Results" width="90%">
 </p>
+
+## 🏆 T2V-CompBench Results
+
+Evaluation results of compositional text-to-video generation on [T2V-CompBench](https://arxiv.org/abs/2407.14505), reported over 7 categories and the overall average (Avg.). **Bold** = best, <ins>underline</ins> = second best.
+
+<table>
+<thead>
+<tr>
+<th align="left">Model</th>
+<th align="center">Avg.</th>
+<th align="center">Motion</th>
+<th align="center">Num</th>
+<th align="center">Spatial</th>
+<th align="center">Con-attr</th>
+<th align="center">Dyn-attr</th>
+<th align="center">Action</th>
+<th align="center">Interact</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="9"><em>Commercial</em></td></tr>
+<tr>
+<td>Pika-1.0</td>
+<td align="center">0.3752</td><td align="center">0.2234</td><td align="center">0.3870</td><td align="center">0.4650</td><td align="center">0.5536</td><td align="center">0.0128</td><td align="center">0.4250</td><td align="center">0.5198</td>
+</tr>
+<tr>
+<td>Gen-3</td>
+<td align="center">0.4094</td><td align="center">0.2754</td><td align="center">0.2306</td><td align="center">0.5194</td><td align="center">0.5980</td><td align="center">0.0687</td><td align="center">0.5233</td><td align="center">0.5906</td>
+</tr>
+<tr>
+<td>Dreamina 1.2</td>
+<td align="center">0.4689</td><td align="center">0.2361</td><td align="center">0.4380</td><td align="center">0.5773</td><td align="center">0.6913</td><td align="center">0.0051</td><td align="center">0.5924</td><td align="center">0.6824</td>
+</tr>
+<tr>
+<td>Kling-1.0</td>
+<td align="center">0.4630</td><td align="center">0.2562</td><td align="center">0.4413</td><td align="center">0.5690</td><td align="center">0.6931</td><td align="center">0.0098</td><td align="center">0.5787</td><td align="center">0.7128</td>
+</tr>
+<tr><td colspan="9"><em>Diffusion UNet-based</em></td></tr>
+<tr>
+<td>ModelScope</td>
+<td align="center">0.3468</td><td align="center">0.2408</td><td align="center">0.1986</td><td align="center">0.4118</td><td align="center">0.5148</td><td align="center">0.0161</td><td align="center">0.3639</td><td align="center">0.4613</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;+ LVD</td>
+<td align="center">0.3912</td><td align="center">0.2457</td><td align="center">0.2008</td><td align="center">0.5405</td><td align="center">0.5439</td><td align="center">0.0171</td><td align="center">0.3802</td><td align="center">0.4502</td>
+</tr>
+<tr>
+<td>Show-1</td>
+<td align="center">0.3676</td><td align="center">0.2291</td><td align="center">0.3086</td><td align="center">0.4544</td><td align="center">0.5670</td><td align="center">0.0115</td><td align="center">0.3881</td><td align="center">0.6244</td>
+</tr>
+<tr>
+<td>VideoTetris</td>
+<td align="center">0.4097</td><td align="center">0.2249</td><td align="center">0.3467</td><td align="center">0.4832</td><td align="center">0.6211</td><td align="center">0.0104</td><td align="center">0.4839</td><td align="center">0.6578</td>
+</tr>
+<tr>
+<td>T2V-Turbo-V2</td>
+<td align="center">0.4317</td><td align="center">0.2556</td><td align="center">0.3261</td><td align="center">0.5025</td><td align="center">0.6723</td><td align="center">0.0127</td><td align="center">0.6087</td><td align="center">0.6439</td>
+</tr>
+<tr><td colspan="9"><em>DiT-based</em></td></tr>
+<tr>
+<td>Open-Sora 1.2</td>
+<td align="center">0.3851</td><td align="center">0.2468</td><td align="center">0.3719</td><td align="center">0.5063</td><td align="center">0.5639</td><td align="center">0.0189</td><td align="center">0.4839</td><td align="center">0.5039</td>
+</tr>
+<tr>
+<td>Open-Sora-Plan v1.3</td>
+<td align="center">0.3670</td><td align="center">0.2377</td><td align="center">0.2952</td><td align="center">0.5162</td><td align="center">0.6076</td><td align="center">0.0119</td><td align="center">0.4524</td><td align="center">0.4483</td>
+</tr>
+<tr><td colspan="9"></td></tr>
+<tr>
+<td>CogVideoX-5B</td>
+<td align="center">0.4189</td><td align="center">0.2658</td><td align="center">0.3706</td><td align="center">0.5172</td><td align="center">0.6164</td><td align="center">0.0219</td><td align="center">0.5333</td><td align="center">0.6069</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;+ DyST-XL</td>
+<td align="center">0.5081</td><td align="center">0.2712</td><td align="center">0.3969</td><td align="center">0.6110</td><td align="center">0.8696</td><td align="center">0.0221</td><td align="center">0.7321</td><td align="center">0.6536</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;+ LVD</td>
+<td align="center">0.4739</td><td align="center">0.3291</td><td align="center">0.3825</td><td align="center">0.5274</td><td align="center">0.7534</td><td align="center">0.0219</td><td align="center">0.6826</td><td align="center">0.6204</td>
+</tr>
+<tr style="background-color:#f0f0f0">
+<td><b>&nbsp;&nbsp;+ Ours</b></td>
+<td align="center"><ins>0.5632</ins></td><td align="center"><ins>0.4351</ins></td><td align="center">0.5081</td><td align="center"><ins>0.6173</ins></td><td align="center"><ins>0.8782</ins></td><td align="center">0.0341</td><td align="center">0.7191</td><td align="center"><ins>0.7502</ins></td>
+</tr>
+<tr style="background-color:#f0f0f0">
+<td><b>&nbsp;&nbsp;%Improve.</b></td>
+<td align="center">🟢+34.4</td><td align="center">🟢+63.7</td><td align="center">🟢+37.1</td><td align="center">🟢+19.4</td><td align="center">🟢+42.5</td><td align="center">🟢+55.7</td><td align="center">🟢+34.8</td><td align="center">🟢+23.6</td>
+</tr>
+<tr><td colspan="9"></td></tr>
+<tr>
+<td>Wan2.1-14B</td>
+<td align="center">0.5314</td><td align="center">0.2696</td><td align="center"><ins>0.5113</ins></td><td align="center">0.5709</td><td align="center">0.8369</td><td align="center">0.0570</td><td align="center">0.7504</td><td align="center">0.7239</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;+ LVD</td>
+<td align="center">0.5439</td><td align="center">0.2864</td><td align="center">0.4707</td><td align="center">0.5753</td><td align="center">0.8610</td><td align="center"><ins>0.0829</ins></td><td align="center"><ins>0.8107</ins></td><td align="center">0.7201</td>
+</tr>
+<tr style="background-color:#f0f0f0">
+<td><b>&nbsp;&nbsp;+ Ours</b></td>
+<td align="center"><b>0.6155</b></td><td align="center"><b>0.4922</b></td><td align="center"><b>0.5881</b></td><td align="center"><b>0.6275</b></td><td align="center"><b>0.8982</b></td><td align="center"><b>0.1182</b></td><td align="center"><b>0.8152</b></td><td align="center"><b>0.7691</b></td>
+</tr>
+<tr style="background-color:#f0f0f0">
+<td><b>&nbsp;&nbsp;%Improve.</b></td>
+<td align="center">🟢+15.8</td><td align="center">🟢+82.6</td><td align="center">🟢+15.0</td><td align="center">🟢+9.9</td><td align="center">🟢+7.3</td><td align="center">🟢+107.4</td><td align="center">🟢+8.6</td><td align="center">🟢+6.2</td>
+</tr>
+</tbody>
+</table>
+
+> 💡 TTOM is **training-free**: it applies test-time optimization on top of frozen pre-trained models (CogVideoX-5B, Wan2.1-14B) without any additional training or fine-tuning, yet achieves state-of-the-art compositional video generation.
 
 ## 📂 Project Structure
 

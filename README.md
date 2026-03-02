@@ -37,8 +37,8 @@
 
 The framework operates in two phases:
 
-1. **Meta Extraction & Layout Generation** (`gen_cache`) – Uses GPT-4o to extract object metadata and generate spatial-temporal layouts from text prompts.
-2. **Video Generation with TTOM** (`gen_benchmarks`) – Generates videos using [Wan2.1](https://github.com/Wan-Video/Wan2.1) conditioned on extracted metadata and layouts, with iterative test-time optimization of cross-attention via LoRA.
+1. **Meta Extraction & Layout Generation** – Uses GPT-4o to extract object metadata and generate spatial-temporal layouts from text prompts.
+2. **Video Generation with TTOM** – Generates videos conditioned on extracted metadata and layouts, with iterative test-time optimization of cross-attention via LoRA.
 
 Built on top of [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio), an efficient diffusion inference engine.
 
@@ -54,7 +54,7 @@ Built on top of [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studi
 
 ## 🏆 T2V-CompBench Results
 
-Evaluation results of compositional text-to-video generation on [T2V-CompBench](https://arxiv.org/abs/2407.14505), reported over 7 categories and the overall average (Avg.). **Bold** = best, <ins>underline</ins> = second best.
+Evaluation on [T2V-CompBench](https://arxiv.org/abs/2407.14505) across 7 compositional categories. **Bold** = best, <ins>underline</ins> = second best.
 
 <table>
 <thead>
@@ -71,64 +71,25 @@ Evaluation results of compositional text-to-video generation on [T2V-CompBench](
 </tr>
 </thead>
 <tbody>
-<tr><td colspan="9"><em>Commercial</em></td></tr>
 <tr>
-<td>Pika-1.0</td>
-<td align="center">0.3752</td><td align="center">0.2234</td><td align="center">0.3870</td><td align="center">0.4650</td><td align="center">0.5536</td><td align="center">0.0128</td><td align="center">0.4250</td><td align="center">0.5198</td>
-</tr>
-<tr>
-<td>Gen-3</td>
-<td align="center">0.4094</td><td align="center">0.2754</td><td align="center">0.2306</td><td align="center">0.5194</td><td align="center">0.5980</td><td align="center">0.0687</td><td align="center">0.5233</td><td align="center">0.5906</td>
-</tr>
-<tr>
-<td>Dreamina 1.2</td>
-<td align="center">0.4689</td><td align="center">0.2361</td><td align="center">0.4380</td><td align="center">0.5773</td><td align="center">0.6913</td><td align="center">0.0051</td><td align="center">0.5924</td><td align="center">0.6824</td>
-</tr>
-<tr>
-<td>Kling-1.0</td>
+<td><a href="https://kling.kuaishou.com/">Kling-1.0</a></td>
 <td align="center">0.4630</td><td align="center">0.2562</td><td align="center">0.4413</td><td align="center">0.5690</td><td align="center">0.6931</td><td align="center">0.0098</td><td align="center">0.5787</td><td align="center">0.7128</td>
 </tr>
-<tr><td colspan="9"><em>Diffusion UNet-based</em></td></tr>
 <tr>
-<td>ModelScope</td>
-<td align="center">0.3468</td><td align="center">0.2408</td><td align="center">0.1986</td><td align="center">0.4118</td><td align="center">0.5148</td><td align="center">0.0161</td><td align="center">0.3639</td><td align="center">0.4613</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;+ LVD</td>
-<td align="center">0.3912</td><td align="center">0.2457</td><td align="center">0.2008</td><td align="center">0.5405</td><td align="center">0.5439</td><td align="center">0.0171</td><td align="center">0.3802</td><td align="center">0.4502</td>
-</tr>
-<tr>
-<td>Show-1</td>
-<td align="center">0.3676</td><td align="center">0.2291</td><td align="center">0.3086</td><td align="center">0.4544</td><td align="center">0.5670</td><td align="center">0.0115</td><td align="center">0.3881</td><td align="center">0.6244</td>
-</tr>
-<tr>
-<td>VideoTetris</td>
-<td align="center">0.4097</td><td align="center">0.2249</td><td align="center">0.3467</td><td align="center">0.4832</td><td align="center">0.6211</td><td align="center">0.0104</td><td align="center">0.4839</td><td align="center">0.6578</td>
-</tr>
-<tr>
-<td>T2V-Turbo-V2</td>
-<td align="center">0.4317</td><td align="center">0.2556</td><td align="center">0.3261</td><td align="center">0.5025</td><td align="center">0.6723</td><td align="center">0.0127</td><td align="center">0.6087</td><td align="center">0.6439</td>
-</tr>
-<tr><td colspan="9"><em>DiT-based</em></td></tr>
-<tr>
-<td>Open-Sora 1.2</td>
-<td align="center">0.3851</td><td align="center">0.2468</td><td align="center">0.3719</td><td align="center">0.5063</td><td align="center">0.5639</td><td align="center">0.0189</td><td align="center">0.4839</td><td align="center">0.5039</td>
-</tr>
-<tr>
-<td>Open-Sora-Plan v1.3</td>
-<td align="center">0.3670</td><td align="center">0.2377</td><td align="center">0.2952</td><td align="center">0.5162</td><td align="center">0.6076</td><td align="center">0.0119</td><td align="center">0.4524</td><td align="center">0.4483</td>
+<td><a href="https://dreamina.jianying.com/">Dreamina 1.2</a></td>
+<td align="center">0.4689</td><td align="center">0.2361</td><td align="center">0.4380</td><td align="center">0.5773</td><td align="center">0.6913</td><td align="center">0.0051</td><td align="center">0.5924</td><td align="center">0.6824</td>
 </tr>
 <tr><td colspan="9"></td></tr>
 <tr>
-<td>CogVideoX-5B</td>
+<td><a href="https://github.com/THUDM/CogVideo">CogVideoX-5B</a></td>
 <td align="center">0.4189</td><td align="center">0.2658</td><td align="center">0.3706</td><td align="center">0.5172</td><td align="center">0.6164</td><td align="center">0.0219</td><td align="center">0.5333</td><td align="center">0.6069</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;+ DyST-XL</td>
+<td>&nbsp;&nbsp;+ <a href="https://arxiv.org/abs/2410.13824">DyST-XL</a></td>
 <td align="center">0.5081</td><td align="center">0.2712</td><td align="center">0.3969</td><td align="center">0.6110</td><td align="center">0.8696</td><td align="center">0.0221</td><td align="center">0.7321</td><td align="center">0.6536</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;+ LVD</td>
+<td>&nbsp;&nbsp;+ <a href="https://arxiv.org/abs/2405.13093">LVD</a></td>
 <td align="center">0.4739</td><td align="center">0.3291</td><td align="center">0.3825</td><td align="center">0.5274</td><td align="center">0.7534</td><td align="center">0.0219</td><td align="center">0.6826</td><td align="center">0.6204</td>
 </tr>
 <tr style="background-color:#f0f0f0">
@@ -141,11 +102,11 @@ Evaluation results of compositional text-to-video generation on [T2V-CompBench](
 </tr>
 <tr><td colspan="9"></td></tr>
 <tr>
-<td>Wan2.1-14B</td>
+<td><a href="https://github.com/Wan-Video/Wan2.1">Wan2.1-14B</a></td>
 <td align="center">0.5314</td><td align="center">0.2696</td><td align="center"><ins>0.5113</ins></td><td align="center">0.5709</td><td align="center">0.8369</td><td align="center">0.0570</td><td align="center">0.7504</td><td align="center">0.7239</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;+ LVD</td>
+<td>&nbsp;&nbsp;+ <a href="https://arxiv.org/abs/2405.13093">LVD</a></td>
 <td align="center">0.5439</td><td align="center">0.2864</td><td align="center">0.4707</td><td align="center">0.5753</td><td align="center">0.8610</td><td align="center"><ins>0.0829</ins></td><td align="center"><ins>0.8107</ins></td><td align="center">0.7201</td>
 </tr>
 <tr style="background-color:#f0f0f0">
@@ -159,7 +120,7 @@ Evaluation results of compositional text-to-video generation on [T2V-CompBench](
 </tbody>
 </table>
 
-> 💡 TTOM is **training-free**: it applies test-time optimization on top of frozen pre-trained models (CogVideoX-5B, Wan2.1-14B) without any additional training or fine-tuning, yet achieves state-of-the-art compositional video generation.
+> 💡 TTOM is **training-free** — it optimizes at inference time on top of frozen pre-trained models without any additional training or fine-tuning.
 
 ## 📂 Project Structure
 

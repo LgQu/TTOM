@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+
+.vscode/
+.cursor/
+
+env/
+venv/
+.env
+
+checkpoints/
+models/
+
+data/
+logs/
+out/
+
+*.mp4
+*.pt
+*.png
+*.gif
+
+# Sensitive files
+.env
+*.key

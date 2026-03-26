@@ -1,0 +1,286 @@
+{
+  "0": {
+    "original_prompt": "A robotic arm grabs a transparent water bottle, lifts it, and places it into a bag on the right",
+    "enriched_prompt": "A sleek metallic robotic arm extends from the left side of a clean laboratory environment. It carefully reaches out and grips a transparent plastic water bottle positioned on a white counter. With a smooth mechanical motion, the arm lifts the bottle into the air, its joints adjusting precisely. The bottle gleams under bright LED lighting, showing the ripples of water inside. The robotic arm then swings gently to the right and lowers the bottle into an open fabric bag resting on the floor beside a cabinet.",
+    "objects": {
+      "0": {
+        "object_id": "0",
+        "object": "robotic arm",
+        "object_phrases": [
+          "A sleek metallic robotic arm",
+          "the arm lifts"
+        ],
+        "object_words": [
+          "arm",
+          "arm"
+        ],
+        "object_positions": [
+          {
+            "phrase": "A sleek metallic robotic arm",
+            "word": "arm",
+            "matched_tokens": [
+              {
+                "token": "▁arm",
+                "id": 4
+              }
+            ]
+          },
+          {
+            "phrase": "the arm lifts",
+            "word": "arm",
+            "matched_tokens": [
+              {
+                "token": "▁arm",
+                "id": 48
+              }
+            ]
+          }
+        ]
+      },
+      "1": {
+        "object_id": "1",
+        "object": "bottle",
+        "object_phrases": [
+          "a transparent plastic water bottle",
+          "the bottle gleams"
+        ],
+        "object_words": [
+          "bottle",
+          "bottle"
+        ],
+        "object_positions": [
+          {
+            "phrase": "a transparent plastic water bottle",
+            "word": "bottle",
+            "matched_tokens": [
+              {
+                "token": "▁bottle",
+                "id": 31
+              }
+            ]
+          }
+        ]
+      },
+      "2": {
+        "object_id": "2",
+        "object": "bag",
+        "object_phrases": [
+          "an open fabric bag"
+        ],
+        "object_words": [
+          "bag"
+        ],
+        "object_positions": [
+          {
+            "phrase": "an open fabric bag",
+            "word": "bag",
+            "matched_tokens": [
+              {
+                "token": "▁bag",
+                "id": 101
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "layout_with_reasoning": "The robotic arm starts from the left side and moves rightward to grab the bottle. As the sequence progresses, the bottle is lifted upward, then both the arm and bottle shift toward the right, where the arm lowers the bottle into a bag. The background remains static as a clean laboratory scene. The motion is fluid and deliberate.\n\nFrame 1: Arm reaches for bottle on table.\nFrame 2: Arm grasps bottle.\nFrame 3: Bottle lifted slightly.\nFrame 4: Arm and bottle moving right.\nFrame 5: Arm above bag.\nFrame 6: Bottle placed into bag.",
+    "layout": {
+      "frames": {
+        "1": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              100,
+              200,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              300,
+              250,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              180,
+              220,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              290,
+              240,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              200,
+              180,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              290,
+              180,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ],
+        "4": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              300,
+              180,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              390,
+              180,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ],
+        "5": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              500,
+              200,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              590,
+              220,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ],
+        "6": [
+          {
+            "id": 0,
+            "name": "arm",
+            "box": [
+              500,
+              250,
+              150,
+              100
+            ]
+          },
+          {
+            "id": 1,
+            "name": "bottle",
+            "box": [
+              610,
+              330,
+              40,
+              100
+            ]
+          },
+          {
+            "id": 2,
+            "name": "bag",
+            "box": [
+              600,
+              300,
+              100,
+              100
+            ]
+          }
+        ]
+      },
+      "background": "laboratory"
+    }
+  }
+}

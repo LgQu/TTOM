@@ -1,0 +1,92 @@
+{
+    "0": {
+      "original_prompt": "A realistic lively video of a scene with one moving car",
+      "prompt": "A sleek, modern sedan glides smoothly along a bustling city street, its glossy black exterior reflecting the neon glow of nearby billboards. The car moves effortlessly from left to right, its headlights slicing through the twilight air as it passes towering skyscrapers and dimly lit alleyways. Moments later, the vehicle picks up speed, weaving gracefully through light traffic, its tires hugging the asphalt with precision. The cityscape morphs behind it—vibrant storefronts blur into a cascade of color while streetlights flicker rhythmically above.",
+      "objects": {
+        "0": {
+          "object_id": "0",
+          "object": "sedan",
+          "object_phrases": [
+            "modern sedan glides",
+            "The car moves",
+            "the vehicle picks"
+          ],
+          "object_words": [
+            "sedan",
+            "car",
+            "vehicle"
+          ],
+          "object_positions": [
+            {
+              "phrase": "modern sedan glides",
+              "word": "sedan",
+              "matched_tokens": [
+                {
+                  "token": "▁sedan",
+                  "id": 4
+                }
+              ]
+            },
+            {
+              "phrase": "The car moves",
+              "word": "car",
+              "matched_tokens": [
+                {
+                  "token": "▁car",
+                  "id": 31
+                }
+              ]
+            },
+            {
+              "phrase": "the vehicle picks",
+              "word": "vehicle",
+              "matched_tokens": [
+                {
+                  "token": "▁vehicle",
+                  "id": 77
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "1": {
+      "original_prompt": "A realistic lively video of a scene with two flying birds",
+      "prompt": "Two birds soar gracefully through the vast sky, their wings cutting through the open air. The second bird, flying ahead, glides smoothly with steady, rhythmic movements, occasionally tilting its wings to adjust to the wind. The first bird follows closely behind and slightly lower, flapping its wings intermittently to maintain altitude. As they move, their silhouettes shift against the backdrop of soft clouds, their flight forming a synchronized rhythm in the open sky.",
+      "objects": {
+        "0": {
+          "object_phrases": [
+            "The first bird follows closely behind"
+          ],
+          "object_positions": [
+            {
+              "phrase": "first bird follows",
+              "matched_tokens": [
+                {
+                  "token": "▁bird",
+                  "id": 49
+                }
+              ]
+            }
+          ]
+        },
+        "1": {
+          "object_phrases": [
+            "The second bird, flying ahead"
+          ],
+          "object_positions": [
+            {
+              "phrase": "second bird, flying",
+              "matched_tokens": [
+                {
+                  "token": "▁bird",
+                  "id": 21
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+}

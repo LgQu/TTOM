@@ -1,0 +1,5 @@
+{
+    "A bear walks from the left to the right": [
+        "Reasoning: A bear walking from left to right will have its x-coordinate increasing with each frame, while its y-coordinate should remain relatively constant as it is walking on a flat surface.\n\nFrame 1: [{'id': 0, 'name': 'bear', 'box': [0, 256, 100, 100]}]\nFrame 2: [{'id': 0, 'name': 'bear', 'box': [100, 256, 100, 100]}]\nFrame 3: [{'id': 0, 'name': 'bear', 'box': [200, 256, 100, 100]}]\nFrame 4: [{'id': 0, 'name': 'bear', 'box': [300, 256, 100, 100]}]\nFrame 5: [{'id': 0, 'name': 'bear', 'box': [410, 256, 100, 100]}]\nFrame 6: [{'id': 0, 'name': 'bear', 'box': [520, 256, 100, 100]}]\nBackground keyword: forest"
+    ]
+}

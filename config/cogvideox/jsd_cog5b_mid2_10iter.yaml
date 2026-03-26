@@ -1,0 +1,41 @@
+input:
+  prompt: ""
+  prompt_id: 0
+  cache_path: "cache/cache_4_motion_binding_gpt-4o.json"
+  model_path: "THUDM/CogVideoX-5b"
+  generate_type: "t2v"
+
+video:
+  output_path: "data/output/video.mp4"
+  num_frames: 40
+  fps: 8
+  # num_frames: 1
+  # fps: 1
+
+inference:
+  num_inference_steps: 50
+  seed: 42
+  enable_cpu_offload: True
+  guidance_scale: 6.0
+
+guidance:
+  guidance_type: "none"
+  return_guidance_saved_attn: False
+  guidance_start_step: 0
+  guidance_end_step: 10
+
+backward_guidance_kwargs:
+  loss_scale: 1.0
+  loss_threshold: 12.0
+  set_amf_loss: True
+  max_iter: 5
+  lr: 5e-3
+  verbose: True
+  clear_cache: True
+  guidance_attn_strategy: "middle_2"
+  guidance_attn_keys: {}
+  set_latents_norm: False
+
+energy_function_kwargs:
+  use_ciou_based_loss: False
+  use_ratio_based_loss: False
